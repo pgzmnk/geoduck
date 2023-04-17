@@ -1,32 +1,84 @@
 import { useState } from "react";
-import ReactDOM from "react-dom";
+import * as React from "react";
+
 import { Allotment } from "allotment";
-// import "allotment/dist/style.css";
+import "allotment/dist/style.css";
+import styles from "@/styles/Content.module.css";
+
+const Content = () => (
+  <div className={styles.container}>
+    <div className={styles.card}>
+      <svg
+        className={styles.svg}
+        preserveAspectRatio="none"
+        stroke="currentColor"
+        fill="none"
+        viewBox="0 0 200 200"
+        aria-hidden="true"
+      >
+        <path
+          vectorEffect="non-scaling-stroke"
+          strokeWidth="20"
+          d="M0 0l200 200M0 200L200 0"
+        ></path>
+      </svg>
+    </div>
+  </div>
+);
 
 export function Allotments() {
-  const [leftSidebarOpen, setLeftSidebarOpen] = useState(true);
-  const [bottomDrawerOpen, setBottomDrawerOpen] = useState(true);
+  const [leftSidebarVisible, setLeftSidebarVisible] = useState(true);
+  const [bottomDrawerVisible, setBottomDrawerVisible] = useState(true);
 
   return (
-    <Allotment>
-      {leftSidebarOpen === true && (
-        <Allotment.Pane minSize={200} visible>
-          <div>Pane Left</div>
+    <div
+      className={styles.container}
+      style={{ minHeight: "100vh", minWidth: "100vw" }}
+    >
+      <button
+        className={styles.button}
+        type="button"
+        onClick={() => {
+          setLeftSidebarVisible((leftSidebarVisible) => !leftSidebarVisible);
+        }}
+      >
+        {leftSidebarVisible ? "Hide" : "Show"}
+      </button>
+      <button
+        className={styles.button}
+        type="button"
+        onClick={() => {
+          setBottomDrawerVisible((bottomDrawerVisible) => !bottomDrawerVisible);
+        }}
+      >
+        {bottomDrawerVisible ? "Hide" : "Show"}
+      </button>
+      <Allotment
+        minSize={100}
+        maxSize={2000}
+        snap
+        onVisibleChange={(_index, value) => {
+          setLeftSidebarVisible(value);
+        }}
+      >
+        <Allotment.Pane visible={leftSidebarVisible}>
+          <Content />
         </Allotment.Pane>
-      )}
-      <Allotment.Pane minSize={100} snap visible>
-        {leftSidebarOpen === false && <h1>Open Button</h1>}
-        <Allotment vertical>
-          <Allotment.Pane minSize={200} visible>
-            {bottomDrawerOpen === false && <h1>open shell</h1>}
-          </Allotment.Pane>
-          {bottomDrawerOpen === true && (
-            <Allotment.Pane preferredSize={300} maxSize={600} visible>
-              <h1>Shell button</h1>
+        <Allotment.Pane>
+          <Allotment
+            vertical
+            snap
+            onVisibleChange={(_index, value) => {
+              setBottomDrawerVisible(value);
+            }}
+          >
+            <Content />
+            <Allotment.Pane visible={bottomDrawerVisible}>
+              <Content />
             </Allotment.Pane>
-          )}
-        </Allotment>
-      </Allotment.Pane>
-    </Allotment>
+          </Allotment>
+        </Allotment.Pane>
+      </Allotment>
+    </div>
   );
 }
