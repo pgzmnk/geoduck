@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import * as React from "react";
 
-import { Allotment } from "allotment";
+import { Allotment, AllotmentHandle } from "allotment";
 import "allotment/dist/style.css";
 import styles from "@/styles/Content.module.css";
+import { AllotmentShell } from "@/components/AllotmentShell";
+
+const minHeight = 70;
 
 const Content = () => (
   <div className={styles.container}>
@@ -30,51 +33,49 @@ export function Allotments() {
   const [leftSidebarVisible, setLeftSidebarVisible] = useState(true);
   const [bottomDrawerVisible, setBottomDrawerVisible] = useState(true);
 
+  const bottomAllotmentRef = useRef<AllotmentHandle>(null!);
+  const onHeightChange = useCallback(
+    (newHeight: number[]) => setBottomDrawerVisible(newHeight[1] === minHeight),
+    [setBottomDrawerVisible]
+  );
+  console.log("bottomDrawerVisible0", bottomDrawerVisible);
+
   return (
     <div
       className={styles.container}
       style={{ minHeight: "100vh", minWidth: "100vw" }}
     >
-      <button
-        className={styles.button}
-        type="button"
-        onClick={() => {
-          setLeftSidebarVisible((leftSidebarVisible) => !leftSidebarVisible);
-        }}
-      >
-        {leftSidebarVisible ? "Hide" : "Show"}
-      </button>
-      <button
-        className={styles.button}
-        type="button"
-        onClick={() => {
-          setBottomDrawerVisible((bottomDrawerVisible) => !bottomDrawerVisible);
-        }}
-      >
-        {bottomDrawerVisible ? "Hide" : "Show"}
-      </button>
       <Allotment
-        minSize={100}
-        maxSize={2000}
-        snap
         onVisibleChange={(_index, value) => {
           setLeftSidebarVisible(value);
         }}
       >
-        <Allotment.Pane visible={leftSidebarVisible}>
+        <Allotment.Pane minSize={50} maxSize={150} visible={leftSidebarVisible}>
           <Content />
         </Allotment.Pane>
         <Allotment.Pane>
           <Allotment
             vertical
-            snap
-            onVisibleChange={(_index, value) => {
-              setBottomDrawerVisible(value);
-            }}
+            ref={bottomAllotmentRef}
+            onChange={onHeightChange}
           >
             <Content />
-            <Allotment.Pane visible={bottomDrawerVisible}>
-              <Content />
+            <Allotment.Pane minSize={minHeight} visible>
+              <AllotmentShell
+                collapsed={bottomDrawerVisible}
+                setCollapsed={(newCollapsed: boolean) => {
+                  setBottomDrawerVisible(newCollapsed);
+                  if (bottomAllotmentRef.current) {
+                    if (newCollapsed) {
+                      console.log("resize");
+                      bottomAllotmentRef.current.resize([10000, minHeight]);
+                    } else {
+                      console.log("reset");
+                      bottomAllotmentRef.current.reset();
+                    }
+                  }
+                }}
+              />
             </Allotment.Pane>
           </Allotment>
         </Allotment.Pane>
