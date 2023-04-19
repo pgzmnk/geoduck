@@ -4,7 +4,7 @@ import * as React from "react";
 import { Allotment, AllotmentHandle } from "allotment";
 import "allotment/dist/style.css";
 import styles from "@/styles/Content.module.css";
-import { AllotmentShell } from "@/components/AllotmentShell";
+import { AllotmentBottom } from "@/components/AllotmentBottom";
 
 const minHeight = 70;
 
@@ -61,7 +61,7 @@ export function Allotments() {
           >
             <Content />
             <Allotment.Pane minSize={minHeight} visible>
-              <AllotmentShell
+              <AllotmentBottom
                 collapsed={bottomDrawerVisible}
                 setCollapsed={(newCollapsed: boolean) => {
                   setBottomDrawerVisible(newCollapsed);
