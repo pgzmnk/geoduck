@@ -6,6 +6,7 @@ import "allotment/dist/style.css";
 import styles from "@/styles/Content.module.css";
 import { AllotmentBottom } from "@/components/AllotmentBottom";
 import { AllotmentLeft } from "@/components/AllotmentLeft";
+import Map from "@/components/Map";
 
 const minHeight = 70;
 const minWidth = 30;
@@ -73,7 +74,7 @@ export function Allotments() {
             ref={bottomAllotmentRef}
             onChange={onHeightChange}
           >
-            <Content />
+            <Map />
             <Allotment.Pane minSize={minHeight} visible>
               <AllotmentBottom
                 collapsed={bottomAllotmentVisible}
