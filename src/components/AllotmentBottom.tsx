@@ -37,19 +37,22 @@ export const AllotmentBottom = ({
   return (
     <div class="font-sans text-black">
       <div class="container mx-auto m-4 px-4">
-        <div class="flex-none w-14 ">
-          <IconButton
-            onClick={() => {
-              setCollapsed(!collapsed);
-            }}
-            // variant="outlined"
-          >
-            {collapsed ? (
-              <i className="fas fa-solid fa-angle-double-up" />
-            ) : (
-              <i className="fas fa-solid fa-angle-double-down" />
-            )}
-          </IconButton>
+        <div class="flex w-full">
+          <div class="relative h-10 w-full ">
+            <div class="absolute top-0 right-0">
+              <IconButton
+                onClick={() => {
+                  setCollapsed(!collapsed);
+                }}
+              >
+                {collapsed ? (
+                  <i className="fas fa-solid fa-angle-double-up" />
+                ) : (
+                  <i className="fas fa-solid fa-angle-double-down" />
+                )}
+              </IconButton>
+            </div>
+          </div>
         </div>
         <div class="flex w-full h-100">
           <div class="w-80 grow">
