@@ -32,14 +32,15 @@ const Content = () => (
 );
 
 export function Allotments() {
-  const [leftSidebarVisible, setLeftSidebarVisible] = useState(true);
-  const [bottomDrawerVisible, setBottomDrawerVisible] = useState(true);
+  const [leftAllotmentVisible, setLeftAllotmentVisible] = useState(true);
+  const [bottomAllotmentVisible, setBottomAllotmentVisible] = useState(true);
 
   const leftAllotmentRef = useRef<AllotmentHandle>(null!);
   const bottomAllotmentRef = useRef<AllotmentHandle>(null!);
   const onHeightChange = useCallback(
-    (newHeight: number[]) => setBottomDrawerVisible(newHeight[1] === minHeight),
-    [setBottomDrawerVisible]
+    (newHeight: number[]) =>
+      setBottomAllotmentVisible(newHeight[1] === minHeight),
+    [setBottomAllotmentVisible]
   );
   return (
     <div
@@ -49,11 +50,11 @@ export function Allotments() {
       <Allotment ref={leftAllotmentRef}>
         <Allotment.Pane minSize={minWidth} maxSize={100} visible>
           <AllotmentLeft
-            collapsed={leftSidebarVisible}
+            collapsed={leftAllotmentVisible}
             setCollapsed={(newCollapsed: boolean) => {
-              setLeftSidebarVisible(newCollapsed);
+              setLeftAllotmentVisible(newCollapsed);
               console.log("newCollapsed", newCollapsed);
-              console.log("leftSidebarVisible", leftSidebarVisible);
+              console.log("leftAllotmentVisible", leftAllotmentVisible);
               if (leftAllotmentRef.current) {
                 if (newCollapsed) {
                   console.log("resize");
@@ -75,9 +76,9 @@ export function Allotments() {
             <Content />
             <Allotment.Pane minSize={minHeight} visible>
               <AllotmentBottom
-                collapsed={bottomDrawerVisible}
+                collapsed={bottomAllotmentVisible}
                 setCollapsed={(newCollapsed: boolean) => {
-                  setBottomDrawerVisible(newCollapsed);
+                  setBottomAllotmentVisible(newCollapsed);
                   if (bottomAllotmentRef.current) {
                     if (newCollapsed) {
                       bottomAllotmentRef.current.resize([10000, minHeight]);
