@@ -1,6 +1,4 @@
 import React, { useState, useRef, useCallback } from "react";
-
-import styles from "@/styles/Content.module.css";
 import { Shell } from "@/components/Shell";
 import { IconButton } from "@material-tailwind/react";
 
@@ -10,7 +8,6 @@ import {
   TabsBody,
   Tab,
   TabPanel,
-  Button,
 } from "@material-tailwind/react";
 
 interface AllotmentBottomProps {

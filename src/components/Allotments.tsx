@@ -5,8 +5,10 @@ import { Allotment, AllotmentHandle } from "allotment";
 import "allotment/dist/style.css";
 import styles from "@/styles/Content.module.css";
 import { AllotmentBottom } from "@/components/AllotmentBottom";
+import { AllotmentLeft } from "@/components/AllotmentLeft";
 
 const minHeight = 70;
+const minWidth = 30;
 
 const Content = () => (
   <div className={styles.container}>
@@ -33,25 +35,36 @@ export function Allotments() {
   const [leftSidebarVisible, setLeftSidebarVisible] = useState(true);
   const [bottomDrawerVisible, setBottomDrawerVisible] = useState(true);
 
+  const leftAllotmentRef = useRef<AllotmentHandle>(null!);
   const bottomAllotmentRef = useRef<AllotmentHandle>(null!);
   const onHeightChange = useCallback(
     (newHeight: number[]) => setBottomDrawerVisible(newHeight[1] === minHeight),
     [setBottomDrawerVisible]
   );
-  console.log("bottomDrawerVisible0", bottomDrawerVisible);
-
   return (
     <div
       className={styles.container}
       style={{ minHeight: "100vh", minWidth: "100vw" }}
     >
-      <Allotment
-        onVisibleChange={(_index, value) => {
-          setLeftSidebarVisible(value);
-        }}
-      >
-        <Allotment.Pane minSize={50} maxSize={150} visible={leftSidebarVisible}>
-          <Content />
+      <Allotment ref={leftAllotmentRef}>
+        <Allotment.Pane minSize={minWidth} maxSize={100} visible>
+          <AllotmentLeft
+            collapsed={leftSidebarVisible}
+            setCollapsed={(newCollapsed: boolean) => {
+              setLeftSidebarVisible(newCollapsed);
+              console.log("newCollapsed", newCollapsed);
+              console.log("leftSidebarVisible", leftSidebarVisible);
+              if (leftAllotmentRef.current) {
+                if (newCollapsed) {
+                  console.log("resize");
+                  leftAllotmentRef.current.resize([10, 400]);
+                } else {
+                  console.log("reset");
+                  leftAllotmentRef.current.reset();
+                }
+              }
+            }}
+          />
         </Allotment.Pane>
         <Allotment.Pane>
           <Allotment
@@ -67,10 +80,8 @@ export function Allotments() {
                   setBottomDrawerVisible(newCollapsed);
                   if (bottomAllotmentRef.current) {
                     if (newCollapsed) {
-                      console.log("resize");
                       bottomAllotmentRef.current.resize([10000, minHeight]);
                     } else {
-                      console.log("reset");
                       bottomAllotmentRef.current.reset();
                     }
                   }
