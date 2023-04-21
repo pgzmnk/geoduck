@@ -15,6 +15,8 @@ import "@/styles/globals.css";
 import "@/styles/shell.css";
 import "xterm/css/xterm.css";
 
+import { ThemeProvider } from "@material-tailwind/react";
+
 class ExtraURL {
   constructor(url: string, meta: string) {}
 }
@@ -59,11 +61,20 @@ export const DUCKDB_BUNDLES: duckdb.DuckDBBundles = {
 const logger = new duckdb.ConsoleLogger(duckdb.LogLevel.WARNING);
 
 export default function App({ Component, pageProps }: AppProps) {
+  const customTheme = {
+    component: {
+      defaultProps: {},
+      valid: {},
+      styles: {},
+    },
+  };
   return (
     <DuckDBPlatform logger={logger} bundles={DUCKDB_BUNDLES}>
       <DuckDBProvider>
         <DuckDBConnectionProvider>
-          <Component {...pageProps} />
+          <ThemeProvider value={customTheme}>
+            <Component {...pageProps} />
+          </ThemeProvider>
         </DuckDBConnectionProvider>
       </DuckDBProvider>
     </DuckDBPlatform>

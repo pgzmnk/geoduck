@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 
-const withTM = require('next-transpile-modules')(['@duckdb/react-duckdb', "xterm"]);
+const withTM = require("next-transpile-modules")([
+  "@duckdb/react-duckdb",
+  "xterm",
+  "@unfolded/map-sdk",
+]);
 
 const nextConfig = withTM({
   reactStrictMode: false,
@@ -11,8 +15,11 @@ const nextConfig = withTM({
     ignoreDuringBuilds: true,
   },
   webpack(config, { isServer, dev }) {
-    config.output.webassemblyModuleFilename = isServer && !dev ? '..static/wasm/[name].[moduleHash].wasm' : 'static/wasm/[name].[moduleHash].wasm'
-    config.experiments = { ...config.experiments, asyncWebAssembly: true }
+    config.output.webassemblyModuleFilename =
+      isServer && !dev
+        ? "..static/wasm/[name].[moduleHash].wasm"
+        : "static/wasm/[name].[moduleHash].wasm";
+    config.experiments = { ...config.experiments, asyncWebAssembly: true };
 
     config.module.rules.push({
       test: /.*\.wasm$/,
@@ -20,11 +27,10 @@ const nextConfig = withTM({
       generator: {
         filename: "static/wasm/[name].[contenthash][ext]",
       },
-    })
+    });
 
     return config;
-  }
+  },
+});
 
-})
-
-module.exports = nextConfig
+module.exports = nextConfig;
