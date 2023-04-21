@@ -7,6 +7,7 @@ import styles from "@/styles/Content.module.css";
 import { AllotmentBottom } from "@/components/AllotmentBottom";
 import { AllotmentLeft } from "@/components/AllotmentLeft";
 import Map from "@/components/Map";
+import { Loader } from "@/components/Loader";
 
 const minHeight = 70;
 const minWidth = 30;
@@ -50,7 +51,8 @@ export function Allotments() {
     >
       <Allotment ref={leftAllotmentRef}>
         <Allotment.Pane minSize={minWidth} maxSize={100} visible>
-          <AllotmentLeft
+          <Loader />
+          {/* <AllotmentLeft
             collapsed={leftAllotmentVisible}
             setCollapsed={(newCollapsed: boolean) => {
               setLeftAllotmentVisible(newCollapsed);
@@ -66,7 +68,7 @@ export function Allotments() {
                 }
               }
             }}
-          />
+          /> */}
         </Allotment.Pane>
         <Allotment.Pane>
           <Allotment

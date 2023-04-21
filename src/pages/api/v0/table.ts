@@ -15,10 +15,15 @@ type Dataset = {
 };
 
 const data: Dataset[] = [
+  // {
+  //   name: "cpv_geo_ageb",
+  //   query:
+  //     "https://open-demo-datasets.s3.us-west-2.amazonaws.com/inegi/cpv_2020/geo_cpv_00_routerjoin.parquet",
+  // },
   {
-    name: "cpv_geo_ageb",
+    name: "cities",
     query:
-      "https://open-demo-datasets.s3.us-west-2.amazonaws.com/inegi/cpv_2020/geo_cpv_00_routerjoin.parquet",
+      "https://open-demo-datasets.s3.us-west-2.amazonaws.com/kepler/cities.csv",
   },
 ];
 
