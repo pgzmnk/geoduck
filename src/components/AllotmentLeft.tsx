@@ -25,7 +25,6 @@ export const AllotmentLeft = ({
 
   return (
     <div class="font-sans text-black">
-      <h1>B</h1>
       <div class="absolute bottom-0">
         <IconButton
           onClick={() => {
