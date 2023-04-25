@@ -7,30 +7,10 @@ import styles from "@/styles/Content.module.css";
 import { AllotmentBottom } from "@/components/AllotmentBottom";
 import { AllotmentLeft } from "@/components/AllotmentLeft";
 import Map from "@/components/Map";
+import { loadInitialData } from "@/utils/duckdbFunctions";
 
 const minHeight = 70;
 const minWidth = 30;
-
-const Content = () => (
-  <div className={styles.container}>
-    <div className={styles.card}>
-      <svg
-        className={styles.svg}
-        preserveAspectRatio="none"
-        stroke="currentColor"
-        fill="none"
-        viewBox="0 0 200 200"
-        aria-hidden="true"
-      >
-        <path
-          vectorEffect="non-scaling-stroke"
-          strokeWidth="20"
-          d="M0 0l200 200M0 200L200 0"
-        ></path>
-      </svg>
-    </div>
-  </div>
-);
 
 export function Allotments() {
   const [leftAllotmentVisible, setLeftAllotmentVisible] = useState(true);
@@ -43,6 +23,8 @@ export function Allotments() {
       setBottomAllotmentVisible(newHeight[1] === minHeight),
     [setBottomAllotmentVisible]
   );
+
+  loadInitialData();
   return (
     <div
       className={styles.container}
