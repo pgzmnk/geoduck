@@ -8,8 +8,8 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API
 export default function Map() {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(-70.9);
-  const [lat, setLat] = useState(42.35);
+  const [lng, setLng] = useState(-122.41);
+  const [lat, setLat] = useState(37.77);
   const [zoom, setZoom] = useState(9);
 
   useEffect(() => {
@@ -31,6 +31,24 @@ export default function Map() {
     });
     map.current.once('load', () => { map.current.resize() })
     map.current.once('idle', () => { map.current.resize() })
+
+    map.current.on('load', () => {
+      map.current.addLayer({
+        id: 'rpd_parks',
+        type: 'fill',
+        source: {
+          type: 'vector',
+          url: 'mapbox://mapbox.3o7ubwm8'
+        },
+        'source-layer': 'RPD_Parks',
+        layout: {
+          visibility: 'visible',
+        },
+        paint: {
+          'fill-color': 'rgba(61,153,80,0.55)'
+        }
+      });
+    });
   });
 
   return (
