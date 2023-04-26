@@ -18,7 +18,7 @@ export async function runQueryDuckDb(db: any, query: string) {
   try {
     const c = await db!.value!.connect();
     const response = await c.query(query);
-    const result = response.toString();
+    return response.toString();
   } catch (error) {
     console.log("error: ", error);
   }
