@@ -69,7 +69,7 @@ export default function Map() {
 
 
 
-    map.current.on('click', (e) => {
+    map.current.on('load', (e) => {
 
       console.log('e: ', e)
 
