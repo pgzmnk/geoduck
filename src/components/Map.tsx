@@ -67,60 +67,73 @@ export default function Map() {
 
     map.current.on('load', () => {
 
-      const getData = async () => {
-        const _data = await runQueryDuckDb(db, "SELECT * FROM cities;")
+      const getData = async (tableName: string, geoType: string) => {
+        const _data = await runQueryDuckDb(db, `SELECT * FROM ${tableName};`)
 
         if (_data) {
           const data = JSON.parse(_data)
 
           // transform data into format for mapbox addSource
-          var geojson = {
-            'type': 'FeatureCollection',
-            'features': data.map((city) => {
-              return {
-                'type': 'Feature',
-                'geometry': {
-                  'type': 'Point',
-                  'coordinates': [city.longitude, city.latitude]
-                },
-                'properties': {
-                  'title': city.cityName
-                }
+
+          var geojson = {}
+          switch (geoType) {
+            case 'point':
+              geojson = {
+                'type': 'FeatureCollection',
+                'features': data.map((city) => {
+                  return {
+                    'type': 'Feature',
+                    'geometry': {
+                      'type': 'Point',
+                      'coordinates': [city.longitude, city.latitude]
+                    },
+                    'properties': {
+                      'title': city.cityName
+                    }
+                  }
+                })
               }
-            })
+            case 'polygon':
+              break
+            default:
+              break
           }
 
-          if (!map.current.getSource('points_cities')) {
 
-            if (!map.current.hasImage('custom-marker')) {
-              map.current.loadImage(
-                'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
-                (error, image) => {
-                  if (error) throw error;
-                  map.current.addImage('custom-marker', image);
-                  map.current.addSource('points_cities', {
-                    'type': 'geojson',
-                    'data': geojson
-                  });
 
-                  map.current.addLayer({
-                    'id': 'points',
-                    'type': 'symbol',
-                    'source': 'points_cities',
-                    'layout': {
-                      'icon-image': 'custom-marker',
-                      // get the title name from the source's "title" property
-                      'text-field': ['get', 'title'],
-                      'text-font': [
-                        'Open Sans Semibold',
-                        'Arial Unicode MS Bold'
-                      ],
-                      'text-offset': [0, 1.25],
-                      'text-anchor': 'top'
-                    }
-                  });
-                }
-              )
+          if ("type" in geojson) {
+            if (!map.current.getSource('points_cities')) {
+
+              if (!map.current.hasImage('custom-marker')) {
+                map.current.loadImage(
+                  'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
+                  (error, image) => {
+                    if (error) throw error;
+                    map.current.addImage('custom-marker', image);
+                    map.current.addSource('points_cities', {
+                      'type': 'geojson',
+                      'data': geojson
+                    });
+
+                    map.current.addLayer({
+                      'id': 'points',
+                      'type': 'symbol',
+                      'source': 'points_cities',
+                      'layout': {
+                        'icon-image': 'custom-marker',
+                        // get the title name from the source's "title" property
+                        'text-field': ['get', 'title'],
+                        'text-font': [
+                          'Open Sans Semibold',
+                          'Arial Unicode MS Bold'
+                        ],
+                        'text-offset': [0, 1.25],
+                        'text-anchor': 'top'
+                      }
+                    });
+                  }
+                )
+              }
             }
           }
 
@@ -129,7 +142,8 @@ export default function Map() {
         }
       }
 
-      getData()
+
+      getData('cities', 'point')
 
     });
   })
