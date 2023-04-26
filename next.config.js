@@ -3,7 +3,6 @@
 const withTM = require("next-transpile-modules")([
   "@duckdb/react-duckdb",
   "xterm",
-  "@unfolded/map-sdk",
 ]);
 
 const nextConfig = withTM({
