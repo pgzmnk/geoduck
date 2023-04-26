@@ -26,8 +26,6 @@ export default function Map() {
     });
   });
 
-
-
   useEffect(() => {
     if (!map.current) return;
     map.current.on('move', () => {
@@ -67,11 +65,7 @@ export default function Map() {
 
     });
 
-
-
-    map.current.on('load', (e) => {
-
-      console.log('e: ', e)
+    map.current.on('load', () => {
 
       const getData = async () => {
         const _data = await runQueryDuckDb(db, "SELECT * FROM cities;")
