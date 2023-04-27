@@ -28,8 +28,8 @@ const data: Dataset[] = [
   {
     name: "ent",
     query:
-      "SELECT CVEGEO as name, * FROM 'https://open-demo-datasets.s3.us-west-2.amazonaws.com/inegi/00ent_epsg4326.parquet'"
-  }
+      "SELECT CVEGEO as name, * FROM 'https://open-demo-datasets.s3.us-west-2.amazonaws.com/inegi/00ent_epsg4326.parquet'",
+  },
 ];
 
 export default async function handler(
