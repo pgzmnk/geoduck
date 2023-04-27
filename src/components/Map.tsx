@@ -141,6 +141,7 @@ export default function Map() {
                     geometry: wkt.parse(record.geometry_str),
                     properties: {
                       title: record.name,
+                      score: record.score,
                     },
                   };
                 }),
@@ -151,33 +152,30 @@ export default function Map() {
                   type: "geojson",
                   data: geojson,
                 });
-                console.log(
-                  objectId,
-                  "outsource",
-                  map.current.getSource(objectId)
-                );
-
                 map.current.addLayer({
-                  id: objectId,
+                  id: `layer_${objectId}`,
                   type: "fill",
                   source: objectId,
                   paint: {
-                    "fill-color": "#888888",
-                    "fill-opacity": 0.4,
-                    'fill-outline-color': 'rgba(200, 100, 240, 1)'
+                    "fill-color": [
+                      "interpolate",
+                      ["linear"],
+                      ["get", "score"],
+                      0,
+                      "#f6fbfa",
+                      100,
+                      "#1d483f",
+                    ],
+                    "fill-outline-color": "#ffc0cb",
+                    "fill-opacity": 1,
                   },
-                  filter: ["==", "$type", "Polygon"],
                 });
-
-                console.log("out", map.current.getLayer(objectId));
+                console.log("~~out", map.current.getLayer(`layer_${objectId}`));
               }
-
               break;
             default:
               break;
           }
-
-          console.log("geoType", geoType, "geojson", geojson);
         }
       };
 
