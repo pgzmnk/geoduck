@@ -10,6 +10,8 @@ import Map from "@/components/Map";
 import { loadInitialData } from "@/utils/duckdbFunctions";
 import { renderMapData } from "@/utils/mapFunctions";
 import { MapContext } from "@/context/context";
+import * as rd from "@duckdb/react-duckdb";
+
 
 const minHeight = 70;
 const minWidth = 30;
@@ -27,8 +29,9 @@ export function Allotments() {
   );
 
   // render initial map data
+  const db = rd.useDuckDB()
   const { map } = React.useContext(MapContext)
-  loadInitialData().then(async () => { renderMapData(map) })
+  loadInitialData().then(async (tableNames) => { renderMapData(map, db, tableNames) })
 
   return (
     <div

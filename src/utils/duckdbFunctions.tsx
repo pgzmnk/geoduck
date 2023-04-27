@@ -7,11 +7,13 @@ export async function loadInitialData() {
   fetch("/api/v0/table")
     .then((res) => res.json())
     .then((res) => {
+      var tableNames = []
       res.data.forEach((table) => {
         const query = `CREATE OR REPLACE TABLE ${table.name} AS ${table.query};`;
-        console.log("- query", query);
         runQueryDuckDb(db, query);
+        tableNames.push(table.name)
       });
+      return tableNames
     });
 }
 
