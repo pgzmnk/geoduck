@@ -8,7 +8,8 @@ export async function loadInitialData() {
     .then((res) => res.json())
     .then((res) => {
       res.data.forEach((table) => {
-        const query = `CREATE OR REPLACE TABLE ${table.name} AS SELECT * FROM '${table.query}';`;
+        const query = `CREATE OR REPLACE TABLE ${table.name} AS ${table.query};`;
+        console.log("- query", query)
         runQueryDuckDb(db, query);
       });
     });

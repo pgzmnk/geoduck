@@ -23,8 +23,13 @@ const data: Dataset[] = [
   {
     name: "cities",
     query:
-      "https://open-demo-datasets.s3.us-west-2.amazonaws.com/kepler/cities.csv",
+      "FROM 'https://open-demo-datasets.s3.us-west-2.amazonaws.com/kepler/cities.csv'",
   },
+  {
+    name: "ent",
+    query:
+      "FROM 'https://open-demo-datasets.s3.us-west-2.amazonaws.com/inegi/00ent_epsg4326.parquet'"
+  }
 ];
 
 export default async function handler(

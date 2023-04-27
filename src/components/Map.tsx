@@ -68,41 +68,60 @@ export default function Map() {
     map.current.on('load', () => {
 
       const getData = async (tableName: string, geoType: string) => {
-        const _data = await runQueryDuckDb(db, `SELECT * FROM ${tableName};`)
+        const _data = await runQueryDuckDb(db, `FROM ${tableName};`)
 
         if (_data) {
           const data = JSON.parse(_data)
-
-          // transform data into format for mapbox addSource
 
           var geojson = {}
           switch (geoType) {
             case 'point':
               geojson = {
                 'type': 'FeatureCollection',
-                'features': data.map((city) => {
+                'features': data.map((record) => {
                   return {
                     'type': 'Feature',
                     'geometry': {
                       'type': 'Point',
-                      'coordinates': [city.longitude, city.latitude]
+                      'coordinates': [record.longitude, record.latitude]
                     },
                     'properties': {
-                      'title': city.cityName
+                      'title': record.cityName
                     }
                   }
                 })
               }
             case 'polygon':
+              // transform data into format for polygon mapbox addSource
+              geojson = {
+                'type': 'FeatureCollection',
+                'features': data.map((record) => {
+                  return {
+                    'type': 'Feature',
+                    'geometry': {
+                      'type': 'Polygon',
+                      'coordinates': record.coordinates
+                    },
+                    'properties': {
+                      'title': record.name
+                    }
+                  }
+                })
+              }
+              geojson = data.map((record) =>
+                record.geometry_str
+              )
               break
             default:
               break
           }
 
+          var objectId = `${geoType}s_${tableName}`
 
+          console.log('geojson', geojson)
 
           if ("type" in geojson) {
-            if (!map.current.getSource('points_cities')) {
+            if (!map.current.getSource(objectId)) {
 
               if (!map.current.hasImage('custom-marker')) {
                 map.current.loadImage(
@@ -110,15 +129,15 @@ export default function Map() {
                   (error, image) => {
                     if (error) throw error;
                     map.current.addImage('custom-marker', image);
-                    map.current.addSource('points_cities', {
+                    map.current.addSource(objectId, {
                       'type': 'geojson',
                       'data': geojson
                     });
 
                     map.current.addLayer({
-                      'id': 'points',
+                      'id': objectId,
                       'type': 'symbol',
-                      'source': 'points_cities',
+                      'source': objectId,
                       'layout': {
                         'icon-image': 'custom-marker',
                         // get the title name from the source's "title" property
@@ -143,7 +162,8 @@ export default function Map() {
       }
 
 
-      getData('cities', 'point')
+      // getData('cities', 'point')
+      getData('ent', 'polygon')
 
     });
   })
