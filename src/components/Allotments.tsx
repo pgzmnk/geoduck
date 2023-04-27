@@ -8,6 +8,8 @@ import { AllotmentBottom } from "@/components/AllotmentBottom";
 import { AllotmentLeft } from "@/components/AllotmentLeft";
 import Map from "@/components/Map";
 import { loadInitialData } from "@/utils/duckdbFunctions";
+import { renderMapData } from "@/utils/mapFunctions";
+import { MapContext } from "@/context/context";
 
 const minHeight = 70;
 const minWidth = 30;
@@ -24,7 +26,10 @@ export function Allotments() {
     [setBottomAllotmentVisible]
   );
 
-  loadInitialData();
+  // render initial map data
+  const { map } = React.useContext(MapContext)
+  loadInitialData().then(async () => { renderMapData(map) })
+
   return (
     <div
       className={styles.container}
