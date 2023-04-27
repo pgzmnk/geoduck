@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 
 import mapboxgl from "mapbox-gl";
 import styles from "./Map.module.css";
@@ -6,12 +6,13 @@ import * as wkt from "wkt";
 
 import * as rd from "@duckdb/react-duckdb";
 import { runQueryDuckDb } from "@/utils/duckdbFunctions";
+import { MapContext } from "@/context/context";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API;
 
 export default function Map() {
   const mapContainer = useRef(null);
-  const map = useRef(null);
+  const { map } = useContext(MapContext);
   const [lng, setLng] = useState(-102.41);
   const [lat, setLat] = useState(18.77);
   const [zoom, setZoom] = useState(4);
