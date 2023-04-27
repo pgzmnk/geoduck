@@ -7,8 +7,7 @@ import styles from "@/styles/Content.module.css";
 import { AllotmentBottom } from "@/components/AllotmentBottom";
 import { AllotmentLeft } from "@/components/AllotmentLeft";
 import Map from "@/components/Map";
-import { initFunctions } from "@/utils/initFunctions"
-
+import { initFunctions } from "@/utils/initFunctions";
 
 const minHeight = 70;
 const minWidth = 30;
@@ -25,7 +24,7 @@ export function Allotments() {
     [setBottomAllotmentVisible]
   );
 
-  initFunctions()
+  initFunctions();
 
   return (
     <div
