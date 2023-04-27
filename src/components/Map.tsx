@@ -2,10 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 
 import mapboxgl from "mapbox-gl";
 import styles from "./Map.module.css";
-import * as wkt from "wkt";
-
 import * as rd from "@duckdb/react-duckdb";
-import { runQueryDuckDb } from "@/utils/duckdbFunctions";
 import { MapContext } from "@/context/context";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API;
