@@ -12,9 +12,9 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API;
 export default function Map() {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(-122.41);
-  const [lat, setLat] = useState(37.77);
-  const [zoom, setZoom] = useState(9);
+  const [lng, setLng] = useState(-102.41);
+  const [lat, setLat] = useState(18.77);
+  const [zoom, setZoom] = useState(4);
   const db = rd.useDuckDB();
 
   useEffect(() => {
@@ -164,6 +164,7 @@ export default function Map() {
                   paint: {
                     "fill-color": "#888888",
                     "fill-opacity": 0.4,
+                    'fill-outline-color': 'rgba(200, 100, 240, 1)'
                   },
                   filter: ["==", "$type", "Polygon"],
                 });
