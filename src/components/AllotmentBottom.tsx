@@ -1,7 +1,7 @@
 import React from "react";
 import { Chat } from "@/components/Chat";
 import { DataPreview } from "@/components/DataPreview";
-import { Shell } from "@/components/Shell"
+import { Shell } from "@/components/Shell";
 import { Workflow } from "@/components/Workflow";
 import { IconButton } from "@material-tailwind/react";
 
@@ -12,7 +12,6 @@ import {
   Tab,
   TabPanel,
 } from "@material-tailwind/react";
-
 
 interface AllotmentBottomProps {
   collapsed: boolean;
@@ -43,7 +42,6 @@ export const AllotmentBottom = ({
       value: "chat",
       desc: <Chat />,
     },
-
   ];
 
   return (
