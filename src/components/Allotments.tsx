@@ -11,7 +11,7 @@ import { InitFunctions } from "@/utils/initFunctions";
 import { ComplexNavbar } from "@/components/Navbar";
 
 const minHeight = 70;
-const minWidth = 30;
+const minWidth = 50;
 const navbarHeight = 100;
 
 export function Allotments() {
@@ -44,7 +44,7 @@ export function Allotments() {
         }}
       >
         <Allotment ref={leftAllotmentRef}>
-          <Allotment.Pane minSize={minWidth} maxSize={100} visible>
+          <Allotment.Pane minSize={minWidth} maxSize={300} visible>
             <AllotmentLeft
               collapsed={leftAllotmentVisible}
               setCollapsed={(newCollapsed: boolean) => {
