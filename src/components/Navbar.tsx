@@ -52,7 +52,7 @@ export function ComplexNavbar() {
             href="#"
             className="text-4xl	mr-4 cursor-pointer py-1.5 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"
           >
-            <i>🦆</i> GeoDuck
+            🦆 GeoDuck
           </Typography>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
