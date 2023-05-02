@@ -1,6 +1,9 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
-import { Shell } from "@/components/Shell";
 import { IconButton } from "@material-tailwind/react";
+import { useContext } from "react";
+import { MapContext } from "@/context/context";
+import * as rd from "@duckdb/react-duckdb";
+import { renderMapData } from "@/utils/mapFunctions";
 
 import {
   Tabs,
@@ -53,6 +56,20 @@ const Layers = () => {
     RenderLayer(layer);
   });
 
+  // add layer function
+  async function AddLayer() {
+    const newLayer = {
+      name: "new layer",
+      type: "point",
+      tableName: "new layer",
+    };
+    setLayers([...layers, newLayer]);
+    const db = rd.useDuckDB();
+    const { map } = useContext(MapContext);
+
+    renderMapData(map, db, newLayer.tableName);
+  }
+
   // render layer cards on ui
   return (
     <div className="flex-column">
@@ -101,7 +118,7 @@ const Layers = () => {
           </Button>
         </div>
         <div class="px-4">
-          <IconButton size="md" color="pink">
+          <IconButton size="md" color="pink" onClick={AddLayer}>
             <i className="fas fa-solid fa-square-plus" />
           </IconButton>
         </div>
