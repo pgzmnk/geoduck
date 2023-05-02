@@ -24,21 +24,29 @@ export const AllotmentBottom = ({
   const data = [
     {
       label: "SQL",
+      title: "DuckDB shell",
+      description: "Directly interact with the underlying DuckDB instance.",
       value: "shell",
       desc: <Shell />,
     },
     {
       label: "Workflow",
+      title: "Data",
+      description: "Data description text",
       value: "workflow",
       desc: <Workflow />,
     },
     {
       label: "Data",
+      title: "Workflow",
+      description: "Workflow description text",
       value: "data",
       desc: <DataPreview />,
     },
     {
       label: "Chat",
+      title: "SQL",
+      description: "SQL description text",
       value: "chat",
       desc: <Chat />,
     },
@@ -64,8 +72,12 @@ export const AllotmentBottom = ({
                   unmount: { y: 250 },
                 }}
               >
-                {data.map(({ value, desc }) => (
+                {data.map(({ value, desc, title, description }) => (
                   <TabPanel key={value} value={value}>
+                    <div class="flex flex-col py-4">
+                      <p class="uppercase font-extrabold">{title}</p>
+                      <p>{description}</p>
+                    </div>
                     {desc}
                   </TabPanel>
                 ))}
@@ -73,7 +85,7 @@ export const AllotmentBottom = ({
             </Tabs>
           </div>
         </div>
-        <div class="absolute top-0 right-0 p-4">
+        <div class="absolute top-0 right-0 p-4 pl-10">
           <IconButton
             onClick={() => {
               setCollapsed(!collapsed);
