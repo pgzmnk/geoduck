@@ -108,6 +108,9 @@ export const renderMapData = (map, db, tableNames: string) => {
                             });
                         }
                         break;
+                    case "h3":
+                        // to-do
+                        break;
                     default:
                         break;
                 }
