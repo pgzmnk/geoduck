@@ -88,7 +88,6 @@ export const AllotmentBottom = ({
             </IconButton>
           </div>
         </div>
-
       </div>
     </div>
   );
