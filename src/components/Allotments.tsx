@@ -32,6 +32,7 @@ export function Allotments() {
       className={styles.container}
       style={{ minHeight: "100vh", minWidth: "100vw" }}
     >
+      <ComplexNavbar />
       <Allotment ref={leftAllotmentRef}>
         <Allotment.Pane minSize={minWidth} maxSize={100} visible>
           <AllotmentLeft
