@@ -50,7 +50,7 @@ export function ComplexNavbar() {
           <Typography
             as="a"
             href="#"
-            className="text-4xl	mr-4 cursor-pointer py-1.5 font-medium"
+            className="text-4xl	mr-4 cursor-pointer py-1.5 font-medium textGradient"
           >
             🦆 Geoduck
           </Typography>
@@ -59,18 +59,12 @@ export function ComplexNavbar() {
             <Button
               variant="gradient"
               size="sm"
-              className="hidden lg:inline-block"
+              className="hidden lg:inline-block bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500"
             >
               <span>Contact</span>
             </Button>
           </div>
         </div>
-        <MobileNav open={openNav}>
-          {navList}
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
-            <span>Buy Now</span>
-          </Button>
-        </MobileNav>
       </Navbar>
     </>
   );
