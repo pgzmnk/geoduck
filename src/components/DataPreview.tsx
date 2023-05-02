@@ -1,7 +1,5 @@
 import React from "react";
 
-interface DataPreviewProps {
-}
+interface DataPreviewProps {}
 
-export const DataPreview = (props: DataPreviewProps) => {
-}
+export const DataPreview = (props: DataPreviewProps) => {};

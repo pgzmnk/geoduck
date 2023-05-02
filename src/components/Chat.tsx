@@ -1,7 +1,5 @@
 import React from "react";
 
-interface ChatProps {
-}
+interface ChatProps {}
 
-export const Chat = (props: ChatProps) => {
-}
+export const Chat = (props: ChatProps) => {};

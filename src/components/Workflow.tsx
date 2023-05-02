@@ -1,7 +1,5 @@
 import React from "react";
 
-interface WorkflowProps {
-}
+interface WorkflowProps {}
 
-export const Workflow = (props: WorkflowProps) => {
-}
+export const Workflow = (props: WorkflowProps) => {};

@@ -8,6 +8,7 @@ import { AllotmentBottom } from "@/components/AllotmentBottom";
 import { AllotmentLeft } from "@/components/AllotmentLeft";
 import Map from "@/components/Map";
 import { initFunctions } from "@/utils/initFunctions";
+import { ComplexNavbar } from "@/components/Navbar";
 
 const minHeight = 70;
 const minWidth = 30;
@@ -31,6 +32,7 @@ export function Allotments() {
       className={styles.container}
       style={{ minHeight: "100vh", minWidth: "100vw" }}
     >
+      <ComplexNavbar />
       <Allotment ref={leftAllotmentRef}>
         <Allotment.Pane minSize={minWidth} maxSize={100} visible>
           <AllotmentLeft
