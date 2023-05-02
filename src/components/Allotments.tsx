@@ -27,9 +27,6 @@ export function Allotments() {
 
   InitFunctions();
 
-
-
-
   return (
     <div
       className={styles.container}
