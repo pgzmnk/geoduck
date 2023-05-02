@@ -7,7 +7,7 @@ import styles from "@/styles/Content.module.css";
 import { AllotmentBottom } from "@/components/AllotmentBottom";
 import { AllotmentLeft } from "@/components/AllotmentLeft";
 import Map from "@/components/Map";
-import { initFunctions } from "@/utils/initFunctions";
+import { InitFunctions } from "@/utils/initFunctions";
 import { ComplexNavbar } from "@/components/Navbar";
 
 const minHeight = 70;
@@ -25,7 +25,10 @@ export function Allotments() {
     [setBottomAllotmentVisible]
   );
 
-  initFunctions();
+  InitFunctions();
+
+
+
 
   return (
     <div
