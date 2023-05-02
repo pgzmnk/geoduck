@@ -4,7 +4,7 @@ import { renderMapData } from "@/utils/mapFunctions";
 import { MapContext } from "@/context/context";
 import * as rd from "@duckdb/react-duckdb";
 
-export async function initFunctions() {
+export async function InitFunctions() {
   // render initial map data
   const db = rd.useDuckDB();
   const { map } = useContext(MapContext);

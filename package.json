@@ -47,7 +47,9 @@
     "@babel/core": "^7.21.4",
     "@types/styled-components": "^5.1.26",
     "babel-loader": "^9.1.2",
+    "eslint-config-prettier": "^8.8.0",
     "next-transpile-modules": "^10.0.0",
+    "pre-commit": "^1.2.2",
     "prettier": "^2.8.8",
     "ts-loader": "^9.4.2"
   },
