@@ -29,7 +29,7 @@ export const Shell: React.FC<ShellProps> = (props: ShellProps) => {
     if (!db.resolving()) {
       resolveDB();
     }
-  });
+  }, [db]); // eslint-disable-line
 
   // Embed the shell into the term container
   React.useEffect(() => {
@@ -64,7 +64,7 @@ export const Shell: React.FC<ShellProps> = (props: ShellProps) => {
           },
         });
       })();
-  });
+  }, []); // eslint-disable-line
 
   // Propagate the react state updates to the wasm progress handler
   React.useEffect(() => {

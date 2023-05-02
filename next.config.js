@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 
+const path = require("path");
+
+const CopyPlugin = require("copy-webpack-plugin");
+
 const withTM = require("next-transpile-modules")([
   "@duckdb/react-duckdb",
   "xterm",
@@ -27,6 +31,17 @@ const nextConfig = withTM({
         filename: "static/wasm/[name].[contenthash][ext]",
       },
     });
+
+    config.plugins.push(
+      new CopyPlugin({
+        patterns: [
+          {
+            from: "node_modules/@carlop/duckdb-wasm/dist/extensions-eh/",
+            to: "static/assets/extensions/",
+          },
+        ],
+      })
+    );
 
     return config;
   },
