@@ -38,7 +38,10 @@ export function Allotments() {
       </div>
       <div
         className={styles.container}
-        style={{ minHeight: `calc(100vh - ${navbarHeight}px)`, minWidth: "100vw" }}
+        style={{
+          minHeight: `calc(100vh - ${navbarHeight}px)`,
+          minWidth: "100vw",
+        }}
       >
         <Allotment ref={leftAllotmentRef}>
           <Allotment.Pane minSize={minWidth} maxSize={100} visible>
