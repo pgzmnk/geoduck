@@ -1,5 +1,9 @@
+import { useContext } from "react";
 import { runQueryDuckDb } from "@/utils/duckdbFunctions";
+import { MapContext } from "@/context/context";
 import * as wkt from "wkt";
+import * as rd from "@duckdb/react-duckdb";
+import { loadInitialData } from "@/utils/duckdbFunctions"; // remove
 
 export async function createOrReplaceDataset() {}
 
@@ -8,6 +12,7 @@ export const renderMapData = (map, db, tableNames: string) => {
     const getData = async (tableName: string, geoType: string) => {
       const _data = await runQueryDuckDb(db, `FROM ${tableName};`);
       var objectId = `${geoType}s_${tableName}`;
+      var layerId = `layer_${objectId}`;
 
       if (_data) {
         const data = JSON.parse(_data);
@@ -36,29 +41,32 @@ export const renderMapData = (map, db, tableNames: string) => {
                   map.current.loadImage(
                     "https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png",
                     (error, image) => {
-                      if (error) throw error;
-                      map.current.addImage("custom-marker", image);
-                      map.current.addSource(objectId, {
-                        type: "geojson",
-                        data: geojson,
-                      });
+                      if (!error) {
+                        map.current.addImage("custom-marker", image);
 
-                      map.current.addLayer({
-                        id: objectId,
-                        type: "symbol",
-                        source: objectId,
-                        layout: {
-                          "icon-image": "custom-marker",
-                          // get the title name from the source's "title" property
-                          "text-field": ["get", "title"],
-                          "text-font": [
-                            "Open Sans Semibold",
-                            "Arial Unicode MS Bold",
-                          ],
-                          "text-offset": [0, 1.25],
-                          "text-anchor": "top",
-                        },
-                      });
+                        map.current.addSource(objectId, {
+                          type: "geojson",
+                          data: geojson,
+                        });
+                        if (!map.current.getLayer(layerId)) {
+                          map.current.addLayer({
+                            id: layerId,
+                            type: "symbol",
+                            source: objectId,
+                            layout: {
+                              "icon-image": "custom-marker",
+                              // get the title name from the source's "title" property
+                              "text-field": ["get", "title"],
+                              "text-font": [
+                                "Open Sans Semibold",
+                                "Arial Unicode MS Bold",
+                              ],
+                              "text-offset": [0, 1.25],
+                              "text-anchor": "top",
+                            },
+                          });
+                        }
+                      }
                     }
                   );
                 }
@@ -82,28 +90,32 @@ export const renderMapData = (map, db, tableNames: string) => {
             };
 
             if ("type" in geojson) {
-              map.current.addSource(objectId, {
-                type: "geojson",
-                data: geojson,
-              });
-              map.current.addLayer({
-                id: `layer_${objectId}`,
-                type: "fill",
-                source: objectId,
-                paint: {
-                  "fill-color": [
-                    "interpolate",
-                    ["linear"],
-                    ["get", "score"],
-                    0,
-                    "#f6fbfa",
-                    100,
-                    "#1d483f",
-                  ],
-                  "fill-outline-color": "#ffc0cb",
-                  "fill-opacity": 1,
-                },
-              });
+              if (!map.current.getSource(objectId)) {
+                map.current.addSource(objectId, {
+                  type: "geojson",
+                  data: geojson,
+                });
+              }
+              if (!map.current.getLayer(layerId)) {
+                map.current.addLayer({
+                  id: `layer_${objectId}`,
+                  type: "fill",
+                  source: objectId,
+                  paint: {
+                    "fill-color": [
+                      "interpolate",
+                      ["linear"],
+                      ["get", "score"],
+                      0,
+                      "#f6fbfa",
+                      100,
+                      "#1d483f",
+                    ],
+                    "fill-outline-color": "#ffc0cb",
+                    "fill-opacity": 1,
+                  },
+                });
+              }
             }
             break;
           case "h3":
@@ -119,3 +131,16 @@ export const renderMapData = (map, db, tableNames: string) => {
     getData("ent", "polygon");
   });
 };
+
+type RenderLayerProps = {
+  name: string;
+  type: string;
+  tableName: string;
+};
+
+export async function RenderLayer(layer: RenderLayerProps) {
+  const db = rd.useDuckDB();
+  const { map } = useContext(MapContext);
+
+  renderMapData(map, db, layer.tableName);
+}

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import { Shell } from "@/components/Shell";
 import { IconButton } from "@material-tailwind/react";
 
@@ -8,8 +8,6 @@ import {
   TabsBody,
   Tab,
   TabPanel,
-} from "@material-tailwind/react";
-import {
   Card,
   CardHeader,
   CardBody,
@@ -17,9 +15,11 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import { RenderLayer } from "@/utils/mapFunctions";
 
 function LayerCard(props) {
   const { layer } = props;
+
   return (
     <>
       {layer ? (
@@ -42,13 +42,18 @@ function LayerCard(props) {
 
 const Layers = () => {
   // state for the layers array
-  const [layers, setLayers] = useState({
-    layer1: { name: "layer1name", type: "polygon" },
-    layer2: { name: "layer2name", type: "polygon" },
-  });
+  const [layers, setLayers] = useState([
+    { name: "cities", type: "point", tableName: "cities" },
+    { name: "ent", type: "polygon", tableName: "ent" },
+  ]);
   const [collapsed, setCollapsed] = useState(false);
 
-  // return mapping of layers
+  // render layers on map
+  layers.map((layer) => {
+    RenderLayer(layer);
+  });
+
+  // render layer cards on ui
   return (
     <div className="flex-column">
       <div class="flex flex-row">
@@ -96,21 +101,15 @@ const Layers = () => {
           </Button>
         </div>
         <div class="px-4">
-          <IconButton size="md" color="pink"
-          >
+          <IconButton size="md" color="pink">
             <i className="fas fa-solid fa-square-plus" />
           </IconButton>
         </div>
-
-      </div >
-      <div class="py-10 pl-5">
-        {!collapsed
-          ? Object.keys(layers).map((key, index) => (
-            <LayerCard layer={layers[key]} key={key} />
-          ))
-          : null}
       </div>
-    </div >
+      <div class="py-10 pl-5">
+        {!collapsed ? layers.map((layer) => <LayerCard key={layer} layer={layer} />) : null}
+      </div>
+    </div>
   );
 };
 
