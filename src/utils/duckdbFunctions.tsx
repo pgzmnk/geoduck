@@ -23,6 +23,7 @@ export async function runQueryDuckDb(db: any, query: string) {
     const response = await c.query(query);
     return response.toString();
   } catch (error) {
+    // Show error in console to helps the user debug. In the future, the error should be surfaced to the UI.
     console.log("error: ", error);
   }
 }

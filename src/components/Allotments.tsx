@@ -39,14 +39,10 @@ export function Allotments() {
             collapsed={leftAllotmentVisible}
             setCollapsed={(newCollapsed: boolean) => {
               setLeftAllotmentVisible(newCollapsed);
-              console.log("newCollapsed", newCollapsed);
-              console.log("leftAllotmentVisible", leftAllotmentVisible);
               if (leftAllotmentRef.current) {
                 if (newCollapsed) {
-                  console.log("resize");
                   leftAllotmentRef.current.resize([10, 400]);
                 } else {
-                  console.log("reset");
                   leftAllotmentRef.current.reset();
                 }
               }
