@@ -1,4 +1,5 @@
 import { Allotments } from "@/components/Allotments";
+
 import Head from "next/head";
 
 export default function Home() {

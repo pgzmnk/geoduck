@@ -7,7 +7,8 @@ import styles from "@/styles/Content.module.css";
 import { AllotmentBottom } from "@/components/AllotmentBottom";
 import { AllotmentLeft } from "@/components/AllotmentLeft";
 import Map from "@/components/Map";
-import { loadInitialData } from "@/utils/duckdbFunctions";
+import { InitFunctions } from "@/utils/initFunctions";
+import { ComplexNavbar } from "@/components/Navbar";
 
 const minHeight = 70;
 const minWidth = 30;
@@ -24,26 +25,24 @@ export function Allotments() {
     [setBottomAllotmentVisible]
   );
 
-  loadInitialData();
+  InitFunctions();
+
   return (
     <div
       className={styles.container}
       style={{ minHeight: "100vh", minWidth: "100vw" }}
     >
+      <ComplexNavbar />
       <Allotment ref={leftAllotmentRef}>
         <Allotment.Pane minSize={minWidth} maxSize={100} visible>
           <AllotmentLeft
             collapsed={leftAllotmentVisible}
             setCollapsed={(newCollapsed: boolean) => {
               setLeftAllotmentVisible(newCollapsed);
-              console.log("newCollapsed", newCollapsed);
-              console.log("leftAllotmentVisible", leftAllotmentVisible);
               if (leftAllotmentRef.current) {
                 if (newCollapsed) {
-                  console.log("resize");
                   leftAllotmentRef.current.resize([10, 400]);
                 } else {
-                  console.log("reset");
                   leftAllotmentRef.current.reset();
                 }
               }

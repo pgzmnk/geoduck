@@ -16,6 +16,7 @@ import "@/styles/shell.css";
 import "xterm/css/xterm.css";
 
 import { ThemeProvider } from "@material-tailwind/react";
+import Context from "../context/context";
 
 class ExtraURL {
   constructor(url: string, meta: string) {}
@@ -73,7 +74,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <DuckDBProvider>
         <DuckDBConnectionProvider>
           <ThemeProvider value={customTheme}>
-            <Component {...pageProps} />
+            <Context>
+              <Component {...pageProps} />
+            </Context>
           </ThemeProvider>
         </DuckDBConnectionProvider>
       </DuckDBProvider>

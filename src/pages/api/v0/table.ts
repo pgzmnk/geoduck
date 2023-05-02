@@ -23,7 +23,12 @@ const data: Dataset[] = [
   {
     name: "cities",
     query:
-      "https://open-demo-datasets.s3.us-west-2.amazonaws.com/kepler/cities.csv",
+      "SELECT cityName as name, * FROM 'https://open-demo-datasets.s3.us-west-2.amazonaws.com/kepler/cities.csv'",
+  },
+  {
+    name: "ent",
+    query:
+      "SELECT CVEGEO as name, *, round(random(), 2) * 100 AS score FROM 'https://open-demo-datasets.s3.us-west-2.amazonaws.com/inegi/00ent_epsg4326.parquet'",
   },
 ];
 
