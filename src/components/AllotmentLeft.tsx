@@ -118,15 +118,45 @@ const Layers = () => {
           </Button>
         </div>
         <div class="px-4">
-          <IconButton size="md" color="pink" onClick={AddLayer}>
-            <i className="fas fa-solid fa-square-plus" />
-          </IconButton>
+          <label htmlFor="my-modal-3" className="btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </label>
         </div>
       </div>
       <div class="py-10 pl-5">
         {!collapsed
           ? layers.map((layer) => <LayerCard key={layer.name} layer={layer} />)
           : null}
+      </div>
+      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+      <div className="modal z-50">
+        <div className="modal-box relative">
+          <label
+            htmlFor="my-modal-3"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
+          >
+            ✕
+          </label>
+          <h3 className="text-lg font-bold">
+            test
+          </h3>
+          <p className="py-4">
+            test
+          </p>
+        </div>
       </div>
     </div>
   );
