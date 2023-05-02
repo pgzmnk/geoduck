@@ -108,7 +108,7 @@ const Layers = () => {
       </div>
       <div class="py-10 pl-5">
         {!collapsed
-          ? layers.map((layer) => <LayerCard key={layer} layer={layer} />)
+          ? layers.map((layer) => <LayerCard key={layer.name} layer={layer} />)
           : null}
       </div>
     </div>
