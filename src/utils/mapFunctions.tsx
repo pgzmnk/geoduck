@@ -1,10 +1,10 @@
 import { runQueryDuckDb } from "@/utils/duckdbFunctions";
 import * as wkt from "wkt";
 
-export async function createOrReplaceDataset() {}
+export async function createOrReplaceDataset() { }
 
 export const renderMapData = (map, db, tableNames: string) => {
-  map.current.on("load", () => {
+  map?.current?.on("load", () => {
     const getData = async (tableName: string, geoType: string) => {
       const _data = await runQueryDuckDb(db, `FROM ${tableName};`);
       var objectId = `${geoType}s_${tableName}`;
