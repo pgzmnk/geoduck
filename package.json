@@ -10,7 +10,7 @@
     "format": "prettier --write \"**/*.{js,ts,tsx}\""
   },
   "dependencies": {
-    "@duckdb/duckdb-wasm": "^1.24.0",
+    "@carlop/duckdb-wasm": "^1.13.0",
     "@duckdb/duckdb-wasm-shell": "^1.24.0",
     "@duckdb/react-duckdb": "^1.24.0",
     "@emotion/react": "^11.10.6",
@@ -47,6 +47,7 @@
     "@babel/core": "^7.21.4",
     "@types/styled-components": "^5.1.26",
     "babel-loader": "^9.1.2",
+    "copy-webpack-plugin": "^11.0.0",
     "eslint-config-prettier": "^8.8.0",
     "next-transpile-modules": "^10.0.0",
     "pre-commit": "^1.2.2",
