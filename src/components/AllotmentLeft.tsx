@@ -133,7 +133,7 @@ function Layers() {
 }
 
 export default function TransparentTabs() {
-  const data = [
+  const tabChoices = [
     {
       label: "Layers",
       value: "layers",
@@ -154,14 +154,14 @@ export default function TransparentTabs() {
           className: "bg-blue-500/10 shadow-none text-blue-500",
         }}
       >
-        {data.map(({ label, value, desc }) => (
-          <Tab key={value} value={value}>
+        {tabChoices.map(({ label, value, desc }) => (
+          <Tab key={value} value={value} data-testid={`allotment-left-tab-${value}`}>
             {label}
           </Tab>
         ))}
       </TabsHeader>
       <TabsBody>
-        {data.map(({ value, desc }) => (
+        {tabChoices.map(({ value, desc }) => (
           <TabPanel key={value} value={value}>
             <div>{desc}</div>
           </TabPanel>

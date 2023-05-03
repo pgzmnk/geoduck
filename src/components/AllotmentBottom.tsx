@@ -21,7 +21,7 @@ export const AllotmentBottom = ({
   collapsed,
   setCollapsed,
 }: AllotmentBottomProps) => {
-  const data = [
+  const tabChoices = [
     {
       label: "SQL",
       title: "DuckDB shell",
@@ -60,8 +60,8 @@ export const AllotmentBottom = ({
         <div class="w-80 grow">
           <Tabs value="shell">
             <TabsHeader>
-              {data.map(({ label, value }) => (
-                <Tab key={value} value={value}>
+              {tabChoices.map(({ label, value }) => (
+                <Tab key={value} value={value} data-testid={`allotment-bottom-tab-${value}`}>
                   {label}
                 </Tab>
               ))}
@@ -73,7 +73,7 @@ export const AllotmentBottom = ({
                 unmount: { y: 250 },
               }}
             >
-              {data.map(({ value, desc, title, description }) => (
+              {tabChoices.map(({ value, desc, title, description }) => (
                 <TabPanel key={value} value={value}>
                   <div class="flex flex-col py-4">
                     <p class="uppercase font-extrabold">{title}</p>
