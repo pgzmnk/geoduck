@@ -38,7 +38,7 @@ function LayerCard(props) {
           </CardFooter>
         </Card>
       ) : (
-        <p>No layers defined.</p>
+        <p>No components defined yet.</p>
       )}
     </>
   );
