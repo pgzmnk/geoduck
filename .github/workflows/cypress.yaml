@@ -1,8 +1,12 @@
 name: Cypress e2e tests
-
+run-name: ${{ github.actor }} triggered GitHub Actions 🚀
 on:
   deployment_status:
 jobs: 
+  validate:
+    run-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
   cypress-run:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
