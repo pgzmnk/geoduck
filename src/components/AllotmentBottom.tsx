@@ -32,7 +32,8 @@ export const AllotmentBottom = ({
     {
       label: "Workflow",
       title: "Workflow",
-      description: "Design and execute multi-step spatial analytics procedures with a visual language.",
+      description:
+        "Design and execute multi-step spatial analytics procedures with a visual language.",
       value: "workflow",
       desc: <Workflow />,
     },
@@ -46,7 +47,8 @@ export const AllotmentBottom = ({
     {
       label: "Chat",
       title: "SQL",
-      description: "Translate plain English to SQL. Build complex SQL queries from your prompts. (beta)",
+      description:
+        "Translate plain English to SQL. Build complex SQL queries from your prompts. (beta)",
       value: "chat",
       desc: <Chat />,
     },

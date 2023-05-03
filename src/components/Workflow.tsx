@@ -7,11 +7,10 @@ import ReactFlow, {
   getIncomers,
   getOutgoers,
   getConnectedEdges,
-  Controls
+  Controls,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
-
 
 const initialNodes = [
   {
@@ -43,7 +42,7 @@ const initialEdges = [
   { id: "4->5", source: "4", target: "5" },
 ];
 
-interface WorkflowProps { }
+interface WorkflowProps {}
 
 export function Workflow() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -51,7 +50,7 @@ export function Workflow() {
 
   const onConnect = useCallback(
     (params) => setEdges(addEdge(params, edges)),
-    [edges]
+    [edges] // eslint-disable-line
   );
   const onNodesDelete = useCallback(
     (deleted) => {
@@ -77,12 +76,12 @@ export function Workflow() {
         }, edges)
       );
     },
-    [nodes, edges]
+    [nodes, edges] // eslint-disable-line
   );
 
   return (
     <div class="container mx-auto px-4">
-      <div style={{ height: '400px' }}>
+      <div style={{ height: "400px" }}>
         <p>test</p>
         <ReactFlow
           nodes={nodes}
@@ -100,4 +99,3 @@ export function Workflow() {
     </div>
   );
 }
-
