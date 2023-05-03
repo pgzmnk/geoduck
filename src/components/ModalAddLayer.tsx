@@ -1,5 +1,14 @@
 import { Fragment, useRef, useState } from "react";
-import { IconButton, Input, Checkbox, Typography, Button, Card, Select, Option } from "@material-tailwind/react";
+import {
+  IconButton,
+  Input,
+  Checkbox,
+  Typography,
+  Button,
+  Card,
+  Select,
+  Option,
+} from "@material-tailwind/react";
 import { Dialog, Transition } from "@headlessui/react";
 
 type ModalAddLayerProps = {
@@ -20,8 +29,8 @@ export function ModalAddLayer(props: ModalAddLayerProps) {
   }
 
   function createLayer() {
-    addLayerFunction()
-    closeModal()
+    addLayerFunction();
+    closeModal();
   }
 
   const cancelButtonRef = useRef(null);
@@ -63,33 +72,39 @@ export function ModalAddLayer(props: ModalAddLayerProps) {
                         as="h4"
                         className="text-lg font-medium leading-6 text-gray-900"
                       >
-
                         Add Layer
-
                       </Dialog.Title>
                     </Typography>
                     <Card color="transparent" shadow={false}>
-
                       <Typography color="gray" className="mt-1 font-normal">
                         Enter layer details.
                       </Typography>
                       <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
                         <Typography color="blue-gray">
                           <div className="mb-4 flex flex-col gap-6 m-4 p-4">
-
                             <Input size="lg" label="Name" />
                             <Input size="lg" label="Geo Column" />
-                            <Select label="Geo Type" menuProps={{ className: "h-48" }}>
-                              {[{ name: "polygon" }, { name: "point" }, { name: "h3" }].map(({ name }: any) => (
+                            <Select
+                              label="Geo Type"
+                              menuProps={{ className: "h-48" }}
+                            >
+                              {[
+                                { name: "polygon" },
+                                { name: "point" },
+                                { name: "h3" },
+                              ].map(({ name }: any) => (
                                 <Option key={name} value={name}>
                                   {name}
                                 </Option>
                               ))}
                             </Select>
-
                           </div>
                         </Typography>
-                        <Button className="mt-6" fullWidth onClick={createLayer}>
+                        <Button
+                          className="mt-6"
+                          fullWidth
+                          onClick={createLayer}
+                        >
                           Create
                         </Button>
                       </form>
@@ -104,9 +119,3 @@ export function ModalAddLayer(props: ModalAddLayerProps) {
     </>
   );
 }
-
-
-
-
-
-

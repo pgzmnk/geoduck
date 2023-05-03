@@ -61,14 +61,13 @@ function Layers() {
 
   // add layer function
   async function AddLayer() {
-    console.log("- add layer -")
+    console.log("- add layer -");
     const newLayer = {
       name: "new layer",
       type: "point",
       tableName: "new layer",
     };
     setLayers([...layers, newLayer]);
-
 
     // renderMapData(map, db, newLayer.tableName);
   }
@@ -131,7 +130,7 @@ function Layers() {
       </div>
     </div>
   );
-};
+}
 
 export default function TransparentTabs() {
   const data = [
