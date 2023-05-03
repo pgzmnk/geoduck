@@ -16,6 +16,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
     "@material-tailwind/react": "^1.4.2",
     "@types/node": "18.15.11",
