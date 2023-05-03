@@ -155,7 +155,11 @@ export default function TransparentTabs() {
         }}
       >
         {tabChoices.map(({ label, value, desc }) => (
-          <Tab key={value} value={value} data-testid={`allotment-left-tab-${value}`}>
+          <Tab
+            key={value}
+            value={value}
+            data-testid={`allotment-left-tab-${value}`}
+          >
             {label}
           </Tab>
         ))}

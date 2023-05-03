@@ -61,7 +61,11 @@ export const AllotmentBottom = ({
           <Tabs value="shell">
             <TabsHeader>
               {tabChoices.map(({ label, value }) => (
-                <Tab key={value} value={value} data-testid={`allotment-bottom-tab-${value}`}>
+                <Tab
+                  key={value}
+                  value={value}
+                  data-testid={`allotment-bottom-tab-${value}`}
+                >
                   {label}
                 </Tab>
               ))}
