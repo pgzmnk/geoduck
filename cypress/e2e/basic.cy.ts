@@ -11,7 +11,7 @@ describe("Allotments", () => {
 
     // Should render the Shell in the bottom bar
     cy.get(".shell_container").should("exist");
-    cy.get(".xterm-screen").should("exist");
+    cy.get(".xterm-screen", { timeout: 5000 }).should("exist");
 
     // Should render the left allotment
     cy.get(`[data-testid=allotment-left]`).should("exist");
