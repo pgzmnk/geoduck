@@ -4,8 +4,7 @@ import { useContext } from "react";
 import { MapContext } from "@/context/context";
 import * as rd from "@duckdb/react-duckdb";
 import { renderMapData } from "@/utils/mapFunctions";
-import { Dialog, Transition } from '@headlessui/react'
-
+import { Dialog, Transition } from "@headlessui/react";
 
 import {
   Tabs,
@@ -55,11 +54,11 @@ const Layers = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
   function openModal() {
-    setIsOpen(true)
+    setIsOpen(true);
   }
 
   // render layers on map
@@ -129,14 +128,11 @@ const Layers = () => {
           </Button>
         </div>
         <div class="px-4">
-          <IconButton
-            onClick={openModal}>
+          <IconButton onClick={openModal}>
             <i className="fas fa-plus" />
           </IconButton>
           <Transition appear show={isOpen} as={Fragment}>
-            <div
-              class="fixed "
-            >
+            <div class="fixed ">
               <Dialog as="div" className="relative z-20" onClose={closeModal}>
                 <Transition.Child
                   as={Fragment}
@@ -170,8 +166,9 @@ const Layers = () => {
                         </Dialog.Title>
                         <div className="mt-2">
                           <p className="text-sm text-gray-500">
-                            Your payment has been successfully submitted. We’ve sent
-                            you an email with all of the details of your order.
+                            Your payment has been successfully submitted. We’ve
+                            sent you an email with all of the details of your
+                            order.
                           </p>
                         </div>
 
@@ -191,9 +188,7 @@ const Layers = () => {
               </Dialog>
             </div>
           </Transition>
-
         </div>
-
       </div>
       <div class="py-10 pl-5">
         {!collapsed
