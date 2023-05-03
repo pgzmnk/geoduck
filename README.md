@@ -2,14 +2,26 @@ This is a [DuckDB-Wasm Shell](https://duckdb.org/2021/10/29/duckdb-wasm.html) pr
 
 ## Getting Started
 
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+View website on [http://localhost:3000](http://localhost:3000). 
+
+## Development
+
+Run tests:
+
+```bash
+npm run e2e
+npm run e2e:headless
+```
+
+Lint and format:
+
+```bash
+npm run lint
+npm run format
+```
