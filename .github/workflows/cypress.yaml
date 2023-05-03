@@ -2,8 +2,8 @@ name: Cypress e2e tests
 
 on:
   deployment_status:
-    
-  run-e2e:
+jobs: 
+  cypress-run:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
