@@ -1,6 +1,6 @@
 import React from "react";
-
 import type { AppProps } from "next/app";
+import { Analytics } from "@vercel/analytics/react";
 import {
   DuckDBConnectionProvider,
   DuckDBPlatform,
@@ -76,6 +76,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <ThemeProvider value={customTheme}>
             <Context>
               <Component {...pageProps} />
+              <Analytics />
             </Context>
           </ThemeProvider>
         </DuckDBConnectionProvider>

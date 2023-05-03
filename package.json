@@ -24,6 +24,7 @@
     "@types/node": "18.15.11",
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
+    "@vercel/analytics": "^1.0.1",
     "allotment": "^1.18.1",
     "apache-arrow": "^11.0.0",
     "autoprefixer": "10.4.14",
