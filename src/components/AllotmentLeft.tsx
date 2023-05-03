@@ -180,7 +180,7 @@ export const AllotmentLeft = ({
   setCollapsed,
 }: AllotmentLeftProps) => {
   return (
-    <div>
+    <div data-testid="allotment-left">
       <TransparentTabs />
       <div class="absolute bottom-0">
         <IconButton
