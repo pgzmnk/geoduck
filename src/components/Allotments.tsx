@@ -33,6 +33,7 @@ export function Allotments() {
       <div
         className={styles.navbar}
         style={{ maxHeight: navbarHeight, minWidth: "100vw" }}
+        class="overflow-hidden "
       >
         <ComplexNavbar />
       </div>
