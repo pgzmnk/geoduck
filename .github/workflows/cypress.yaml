@@ -3,11 +3,6 @@ run-name: ${{ github.actor }} triggered GitHub Actions 🚀
 on:
   deployment_status:
 jobs: 
-  verify-trigger:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "${{ github.event.deployment_status.target_url }}"
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
   run-cypress:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
