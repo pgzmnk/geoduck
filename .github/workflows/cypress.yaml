@@ -22,5 +22,3 @@ jobs:
         uses: cypress-io/github-action@v5
         env:
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
-        with:
-          config: pageLoadTimeout=100000,baseUrl=${{ github.event.deployment_status.target_url }}
