@@ -4,15 +4,23 @@ on:
   deployment_status:
 jobs: 
   validate:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
+      - run: echo "${{ github.event.deployment_status.target_url }}"
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
   cypress-run:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
+      - name: Dump GitHub context
+          env:
+            GITHUB_CONTEXT: ${{ toJson(github) }}
+          run: |
+            echo "$GITHUB_CONTEXT"
       - uses: actions/checkout@v3
       - name: Cypress run
         uses: cypress-io/github-action@v5
+        env:
+          CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
         with:
           config: pageLoadTimeout=100000,baseUrl=${{ github.event.deployment_status.target_url }}
