@@ -1,6 +1,6 @@
 import React from "react";
-import type { AppProps } from 'next/app';
-import { Analytics } from '@vercel/analytics/react';
+import type { AppProps } from "next/app";
+import { Analytics } from "@vercel/analytics/react";
 import {
   DuckDBConnectionProvider,
   DuckDBPlatform,
@@ -19,7 +19,7 @@ import { ThemeProvider } from "@material-tailwind/react";
 import Context from "../context/context";
 
 class ExtraURL {
-  constructor(url: string, meta: string) { }
+  constructor(url: string, meta: string) {}
 }
 global.URL = global.URL || ExtraURL;
 
