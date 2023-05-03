@@ -49,10 +49,10 @@ export function ComplexNavbar() {
       data-testid="navbar-top"
     >
       <div className="flex items-center justify-between text-blue-gray-900">
-        <Typography className="text-4xl	mr-4 py-1.5 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+        <Typography className="text-xl	mr-4 py-1.5 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
           🦆 GeoDuck
         </Typography>
-        <Typography className="truncate text-xl	mr-4 py-1.5 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+        <Typography className="truncate text-base	mr-4 py-1.5 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
           Duck infra. Empower your team with geospatial workflows that run on
           the browser.
         </Typography>

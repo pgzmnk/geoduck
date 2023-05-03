@@ -27,14 +27,14 @@ function LayerCard(props) {
   return (
     <>
       {layer ? (
-        <Card className="w-100% my-1 rounded-md	">
+        <Card className="w-100% my-0.5 rounded-md	">
           <CardBody className="text-left">
-            <Typography variant="h4" className="mb-1">
+            <Typography className="text-base">
               <b>{layer.name}</b>
             </Typography>
           </CardBody>
           <CardFooter divider className="uppercase">
-            <Typography variant="small"> {layer.type}</Typography>
+            <Typography class="text-sm"> {layer.type}</Typography>
           </CardFooter>
         </Card>
       ) : (
@@ -123,7 +123,7 @@ function Layers() {
           <ModalAddLayer addLayerFunction={AddLayer} />
         </div>
       </div>
-      <div class="py-10 pl-5">
+      <div class="py-5 pl-2">
         {!collapsed
           ? layers.map((layer) => <LayerCard key={layer.name} layer={layer} />)
           : null}
