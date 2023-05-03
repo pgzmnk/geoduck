@@ -11,7 +11,8 @@ import { InitFunctions } from "@/utils/initFunctions";
 import { ComplexNavbar } from "@/components/Navbar";
 
 const minHeight = 70;
-const minWidth = 30;
+const minWidth = 50;
+const navbarHeight = 100;
 
 export function Allotments() {
   const [leftAllotmentVisible, setLeftAllotmentVisible] = useState(true);
@@ -28,51 +29,63 @@ export function Allotments() {
   InitFunctions();
 
   return (
-    <div
-      className={styles.container}
-      style={{ minHeight: "100vh", minWidth: "100vw" }}
-    >
-      <Allotment ref={leftAllotmentRef}>
-        <Allotment.Pane minSize={minWidth} maxSize={100} visible>
-          <AllotmentLeft
-            collapsed={leftAllotmentVisible}
-            setCollapsed={(newCollapsed: boolean) => {
-              setLeftAllotmentVisible(newCollapsed);
-              if (leftAllotmentRef.current) {
-                if (newCollapsed) {
-                  leftAllotmentRef.current.resize([10, 400]);
-                } else {
-                  leftAllotmentRef.current.reset();
-                }
-              }
-            }}
-          />
-        </Allotment.Pane>
-        <Allotment.Pane>
-          <Allotment
-            vertical
-            ref={bottomAllotmentRef}
-            onChange={onHeightChange}
-          >
-            <Map />
-            <Allotment.Pane minSize={minHeight} visible>
-              <AllotmentBottom
-                collapsed={bottomAllotmentVisible}
-                setCollapsed={(newCollapsed: boolean) => {
-                  setBottomAllotmentVisible(newCollapsed);
-                  if (bottomAllotmentRef.current) {
-                    if (newCollapsed) {
-                      bottomAllotmentRef.current.resize([10000, minHeight]);
-                    } else {
-                      bottomAllotmentRef.current.reset();
-                    }
+    <>
+      <div
+        className={styles.navbar}
+        style={{ maxHeight: navbarHeight, minWidth: "100vw" }}
+        class="overflow-hidden "
+      >
+        <ComplexNavbar />
+      </div>
+      <div
+        className={styles.container}
+        style={{
+          minHeight: `calc(100vh - ${navbarHeight}px)`,
+          minWidth: "100vw",
+        }}
+      >
+        <Allotment ref={leftAllotmentRef}>
+          <Allotment.Pane minSize={minWidth} maxSize={300} visible>
+            <AllotmentLeft
+              collapsed={leftAllotmentVisible}
+              setCollapsed={(newCollapsed: boolean) => {
+                setLeftAllotmentVisible(newCollapsed);
+                if (leftAllotmentRef.current) {
+                  if (newCollapsed) {
+                    leftAllotmentRef.current.resize([10, 400]);
+                  } else {
+                    leftAllotmentRef.current.reset();
                   }
-                }}
-              />
-            </Allotment.Pane>
-          </Allotment>
-        </Allotment.Pane>
-      </Allotment>
-    </div>
+                }
+              }}
+            />
+          </Allotment.Pane>
+          <Allotment.Pane>
+            <Allotment
+              vertical
+              ref={bottomAllotmentRef}
+              onChange={onHeightChange}
+            >
+              <Map />
+              <Allotment.Pane minSize={minHeight} visible>
+                <AllotmentBottom
+                  collapsed={bottomAllotmentVisible}
+                  setCollapsed={(newCollapsed: boolean) => {
+                    setBottomAllotmentVisible(newCollapsed);
+                    if (bottomAllotmentRef.current) {
+                      if (newCollapsed) {
+                        bottomAllotmentRef.current.resize([10000, minHeight]);
+                      } else {
+                        bottomAllotmentRef.current.reset();
+                      }
+                    }
+                  }}
+                />
+              </Allotment.Pane>
+            </Allotment>
+          </Allotment.Pane>
+        </Allotment>
+      </div>
+    </>
   );
 }

@@ -12,6 +12,7 @@ type ResponseData = {
 type Dataset = {
   name: string;
   query: string;
+  type: "point" | "polygon";
 };
 
 const data: Dataset[] = [
@@ -24,11 +25,13 @@ const data: Dataset[] = [
     name: "cities",
     query:
       "SELECT cityName as name, * FROM 'https://open-demo-datasets.s3.us-west-2.amazonaws.com/kepler/cities.csv'",
+    type: "point",
   },
   {
     name: "ent",
     query:
       "SELECT CVEGEO as name, *, round(random(), 2) * 100 AS score FROM 'https://open-demo-datasets.s3.us-west-2.amazonaws.com/inegi/00ent_epsg4326.parquet'",
+    type: "polygon",
   },
 ];
 

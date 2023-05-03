@@ -55,11 +55,6 @@
   height: 100%;
 }
 
-.xterm-screen {
-  /* max-height: 20vh; */
-  /* color:rgb(11, 238, 185) */
-}
-
 .xterm-viewport::-webkit-scrollbar {
   /* background-color: #ffffff; */
   width: 10px;

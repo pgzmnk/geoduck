@@ -8,7 +8,5 @@ export async function InitFunctions() {
   // render initial map data
   const db = rd.useDuckDB();
   const { map } = useContext(MapContext);
-  loadInitialData().then(async (tableNames) => {
-    renderMapData(map, db, tableNames);
-  });
+  loadInitialData();
 }

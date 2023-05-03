@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"**/*.{js,ts,tsx}\""
+    "format": "prettier --write \"**/*.{js,ts,tsx}\"",
+    "e2e": "start-server-and-test dev http://localhost:3000 \"cypress open --e2e\"",
+    "e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\""
   },
   "dependencies": {
     "@carlop/duckdb-wasm": "^1.13.0",
@@ -16,6 +18,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
     "@material-tailwind/react": "^1.4.2",
     "@types/node": "18.15.11",
@@ -24,6 +27,7 @@
     "allotment": "^1.18.1",
     "apache-arrow": "^11.0.0",
     "autoprefixer": "10.4.14",
+    "daisyui": "^2.51.6",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "fontfaceobserver": "^2.3.0",
@@ -34,6 +38,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
+    "reactflow": "^11.7.0",
     "styled-components": "^5.3.9",
     "tailwindcss": "3.3.1",
     "typescript": "5.0.3",
@@ -48,10 +53,12 @@
     "@types/styled-components": "^5.1.26",
     "babel-loader": "^9.1.2",
     "copy-webpack-plugin": "^11.0.0",
+    "cypress": "^12.11.0",
     "eslint-config-prettier": "^8.8.0",
     "next-transpile-modules": "^10.0.0",
     "pre-commit": "^1.2.2",
     "prettier": "^2.8.8",
+    "start-server-and-test": "^2.0.0",
     "ts-loader": "^9.4.2"
   },
   "pre-commit": [

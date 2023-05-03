@@ -1,0 +1,24 @@
+name: Cypress e2e tests
+run-name: ${{ github.actor }} triggered GitHub Actions 🚀
+on:
+  deployment_status:
+jobs: 
+  run-cypress:
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
+
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install --dev
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        env:
+          CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
