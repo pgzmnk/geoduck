@@ -7,16 +7,16 @@ jobs:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Install dependencies
-      run: npm install --dev
+      - name: Install dependencies
+        run: npm install --dev
 
 
-    - name: Cypress run
-      uses: cypress-io/github-action@v5
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
 
-    # - name: Cypress run
-    #     run: npm run cypress:headless
-    #       env:
-    #           BASE_URL: ${{ github.event.deployment_status.target_url }}
+      # - name: Cypress run
+      #     run: npm run cypress:headless
+      #       env:
+      #           BASE_URL: ${{ github.event.deployment_status.target_url }}
