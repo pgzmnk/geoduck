@@ -3,12 +3,12 @@ run-name: ${{ github.actor }} triggered GitHub Actions 🚀
 on:
   deployment_status:
 jobs: 
-  validate:
+  verify-trigger:
     runs-on: ubuntu-latest
     steps:
       - run: echo "${{ github.event.deployment_status.target_url }}"
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-  cypress-run:
+  run-cypress:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
@@ -17,7 +17,12 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "$GITHUB_CONTEXT"
+
       - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install --dev
+
       - name: Cypress run
         uses: cypress-io/github-action@v5
         env:
