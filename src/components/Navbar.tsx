@@ -54,10 +54,9 @@ export function ComplexNavbar() {
           >
             🦆 GeoDuck
           </Typography>
-          <Typography
-            className="text-xl	mr-4 py-1.5 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"
-          >
-            Duck infra. Empower your team with geospatial workflows that run on the browser.
+          <Typography className="text-xl	mr-4 py-1.5 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+            Duck infra. Empower your team with geospatial workflows that run on
+            the browser.
           </Typography>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
