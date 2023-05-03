@@ -1,15 +1,27 @@
 import { Fragment, useRef, useState } from "react";
-import { IconButton, Input } from "@material-tailwind/react";
+import { IconButton, Input, Checkbox, Typography, Button, Card, Select, Option } from "@material-tailwind/react";
 import { Dialog, Transition } from "@headlessui/react";
 
-export function ModalAddLayer() {
+type ModalAddLayerProps = {
+  addLayerFunction: () => void;
+};
+
+export function ModalAddLayer(props: ModalAddLayerProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { addLayerFunction } = props;
+
   function closeModal() {
     setIsOpen(false);
   }
 
   function openModal() {
     setIsOpen(true);
+  }
+
+  function createLayer() {
+    addLayerFunction()
+    closeModal()
   }
 
   const cancelButtonRef = useRef(null);
@@ -46,28 +58,42 @@ export function ModalAddLayer() {
                   leaveTo="opacity-0 scale-95"
                 >
                   <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                    <Dialog.Title
-                      as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900"
-                    >
-                      Payment successful
-                    </Dialog.Title>
-                    <div className="mt-2">
-                      <p className="text-sm text-gray-500">
-                        Your payment has been successfully submitted. We’ve sent
-                        you an email with all of the details of your order.
-                      </p>
-                    </div>
-
-                    <div className="mt-4">
-                      <button
-                        type="button"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                        onClick={closeModal}
+                    <Typography color="blue-gray">
+                      <Dialog.Title
+                        as="h4"
+                        className="text-lg font-medium leading-6 text-gray-900"
                       >
-                        Got it, thanks!
-                      </button>
-                    </div>
+
+                        Add Layer
+
+                      </Dialog.Title>
+                    </Typography>
+                    <Card color="transparent" shadow={false}>
+
+                      <Typography color="gray" className="mt-1 font-normal">
+                        Enter layer details.
+                      </Typography>
+                      <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+                        <Typography color="blue-gray">
+                          <div className="mb-4 flex flex-col gap-6 m-4 p-4">
+
+                            <Input size="lg" label="Name" />
+                            <Input size="lg" label="Geo Column" />
+                            <Select label="Geo Type" menuProps={{ className: "h-48" }}>
+                              {[{ name: "polygon" }, { name: "point" }, { name: "h3" }].map(({ name }: any) => (
+                                <Option key={name} value={name}>
+                                  {name}
+                                </Option>
+                              ))}
+                            </Select>
+
+                          </div>
+                        </Typography>
+                        <Button className="mt-6" fullWidth onClick={createLayer}>
+                          Create
+                        </Button>
+                      </form>
+                    </Card>
                   </Dialog.Panel>
                 </Transition.Child>
               </div>
@@ -78,3 +104,9 @@ export function ModalAddLayer() {
     </>
   );
 }
+
+
+
+
+
+

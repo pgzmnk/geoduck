@@ -29,7 +29,7 @@ function LayerCard(props) {
       {layer ? (
         <Card className="w-100% my-1 rounded-md	">
           <CardBody className="text-left">
-            <Typography variant="p" className="mb-1">
+            <Typography variant="h4" className="mb-1">
               <b>{layer.name}</b>
             </Typography>
           </CardBody>
@@ -44,13 +44,15 @@ function LayerCard(props) {
   );
 }
 
-const Layers = () => {
+function Layers() {
   // state for the layers array
   const [layers, setLayers] = useState([
     { name: "cities", type: "point", tableName: "cities" },
     { name: "ent", type: "polygon", tableName: "ent" },
   ]);
   const [collapsed, setCollapsed] = useState(false);
+  const db = rd.useDuckDB();
+  const { map } = useContext(MapContext);
 
   // render layers on map
   layers.map((layer) => {
@@ -59,16 +61,16 @@ const Layers = () => {
 
   // add layer function
   async function AddLayer() {
+    console.log("- add layer -")
     const newLayer = {
       name: "new layer",
       type: "point",
       tableName: "new layer",
     };
     setLayers([...layers, newLayer]);
-    const db = rd.useDuckDB();
-    const { map } = useContext(MapContext);
 
-    renderMapData(map, db, newLayer.tableName);
+
+    // renderMapData(map, db, newLayer.tableName);
   }
 
   // render layer cards on ui
@@ -89,13 +91,13 @@ const Layers = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
-                class="w-6 h-6"
+                className="w-6 h-6"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M4.5 15.75l7.5-7.5 7.5 7.5"
                 />
               </svg>
@@ -104,13 +106,13 @@ const Layers = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
-                class="w-6 h-6"
+                className="w-6 h-6"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M19.5 8.25l-7.5 7.5-7.5-7.5"
                 />
               </svg>
@@ -119,7 +121,7 @@ const Layers = () => {
           </Button>
         </div>
         <div class="px-4">
-          <ModalAddLayer />
+          <ModalAddLayer addLayerFunction={AddLayer} />
         </div>
       </div>
       <div class="py-10 pl-5">
