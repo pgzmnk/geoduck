@@ -74,9 +74,8 @@ export default function Map() {
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
       </div>
       <div
-        className="h-[100vh] w-full"
         ref={mapContainer}
-        className={styles.map_container}
+        className={`${styles.map_container} h-[100vh] w-full`}
       />
     </div>
   );
