@@ -4,7 +4,7 @@ interface DataPreviewProps {}
 
 export const DataPreview = (props: DataPreviewProps) => {
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto data-collection">
       <table className="table table-compact w-full">
         <thead>
           <tr>

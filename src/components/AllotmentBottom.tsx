@@ -55,9 +55,9 @@ export const AllotmentBottom = ({
   ];
 
   return (
-    <div class="container mx-auto m-4 px-4" data-testid="allotment-bottom">
-      <div class="flex w-full h-100">
-        <div class="w-80 grow">
+    <div className="container mx-auto m-4 px-4" data-testid="allotment-bottom">
+      <div className="flex w-full h-100">
+        <div className="w-80 grow">
           <Tabs value="shell">
             <TabsHeader>
               {tabChoices.map(({ label, value }) => (
@@ -79,8 +79,8 @@ export const AllotmentBottom = ({
             >
               {tabChoices.map(({ value, desc, title, description }) => (
                 <TabPanel key={value} value={value}>
-                  <div class="flex flex-col py-4">
-                    <p class="uppercase font-extrabold">{title}</p>
+                  <div className="flex flex-col py-4">
+                    <p className="uppercase font-extrabold">{title}</p>
                     <p>{description}</p>
                   </div>
                   {desc}
@@ -90,7 +90,7 @@ export const AllotmentBottom = ({
           </Tabs>
         </div>
       </div>
-      <div class="absolute top-0 right-0 p-4 pl-10">
+      <div className="absolute top-0 right-0 p-4 pl-10">
         <IconButton
           onClick={() => {
             setCollapsed(!collapsed);

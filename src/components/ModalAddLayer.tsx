@@ -41,7 +41,7 @@ export function ModalAddLayer(props: ModalAddLayerProps) {
         <i className="fas fa-plus" />
       </IconButton>
       <Transition appear show={isOpen} as={Fragment}>
-        <div class="fixed ">
+        <div className="fixed ">
           <Dialog as="div" className="relative z-20" onClose={closeModal}>
             <Transition.Child
               as={Fragment}

@@ -34,7 +34,7 @@ function LayerCard(props) {
             </Typography>
           </CardBody>
           <CardFooter divider className="uppercase">
-            <Typography class="text-sm"> {layer.type}</Typography>
+            <Typography className="text-sm"> {layer.type}</Typography>
           </CardFooter>
         </Card>
       ) : (
@@ -75,7 +75,7 @@ function Layers() {
   // render layer cards on ui
   return (
     <div className="flex-column">
-      <div class="flex flex-row">
+      <div className="flex flex-row">
         <div>
           <Button
             size="sm"
@@ -119,11 +119,11 @@ function Layers() {
             Map Layers
           </Button>
         </div>
-        <div class="px-4">
+        <div className="px-4">
           <ModalAddLayer addLayerFunction={AddLayer} />
         </div>
       </div>
-      <div class="py-5 pl-2">
+      <div className="py-5 pl-2">
         {!collapsed
           ? layers.map((layer) => <LayerCard key={layer.name} layer={layer} />)
           : null}
@@ -186,7 +186,7 @@ export const AllotmentLeft = ({
   return (
     <div data-testid="allotment-left">
       <TransparentTabs />
-      <div class="absolute bottom-0">
+      <div className="absolute bottom-0">
         <IconButton
           onClick={() => {
             setCollapsed(!collapsed);
