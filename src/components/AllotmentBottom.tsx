@@ -65,8 +65,10 @@ export const AllotmentBottom = ({
       <div className="flex w-full h-100">
         <div className="geoduck-bottom-allotment-wrap w-80 grow">
           <Tabs value="shell" className="geoduck-bottom-allotment-tabs">
+            <div className="geoduck-bottom-tabs-header">
             <TabsHeader>
               {tabChoices.map(({ label, value }) => (
+                <>
                 <Tab
                   key={value}
                   value={value}
@@ -74,8 +76,32 @@ export const AllotmentBottom = ({
                 >
                   {label}
                 </Tab>
+                 
+                </>
+                
               ))}
             </TabsHeader>
+            <div className="geoduck-bottom-allotment-buttons flex w-max gap-4">
+                      <IconButton
+                        onClick={()=>{
+                          setExpand(!expand);
+                        }}>
+                          {expand ? <i class="fas fa-solid fa-expand"></i> : <i class="fas fa-solid fa-compress"></i>}
+                        </IconButton>
+                      <IconButton
+                        onClick={() => {
+                          setCollapsed(!collapsed);
+                        }}
+                      >
+                        {collapsed ? (
+                          <i className="fas fa-solid fa-chevron-up" />
+                        ) : (
+                          <i className="fas fa-solid fa-chevron-down" />
+                        )}
+                      </IconButton>
+              </div>
+            </div>
+
             <TabsBody
               animate={{
                 initial: { y: 250 },
@@ -94,25 +120,7 @@ export const AllotmentBottom = ({
               ))}
             </TabsBody>
           </Tabs>
-            <div className="geoduck-bottom-allotment-buttons flex w-max gap-4">
-              <IconButton
-                onClick={()=>{
-                  setExpand(!expand);
-                }}>
-                  {expand ? <i class="fas fa-solid fa-expand"></i> : <i class="fas fa-solid fa-compress"></i>}
-                </IconButton>
-              <IconButton
-                onClick={() => {
-                  setCollapsed(!collapsed);
-                }}
-              >
-                {collapsed ? (
-                  <i className="fas fa-solid fa-chevron-up" />
-                ) : (
-                  <i className="fas fa-solid fa-chevron-down" />
-                )}
-              </IconButton>
-          </div>
+          
         </div>
       </div>
     </div>
