@@ -3,6 +3,7 @@ import * as React from "react";
 
 import { Allotment, AllotmentHandle } from "allotment";
 import "allotment/dist/style.css";
+import 'simplebar-react/dist/simplebar.min.css';
 import styles from "@/styles/Content.module.css";
 import { AllotmentBottom } from "@/components/AllotmentBottom";
 import { AllotmentLeft } from "@/components/AllotmentLeft";
@@ -17,6 +18,7 @@ const navbarHeight = 100;
 export function Allotments() {
   const [leftAllotmentVisible, setLeftAllotmentVisible] = useState(true);
   const [bottomAllotmentVisible, setBottomAllotmentVisible] = useState(true);
+  const [bottomAllotmentExpanded, setBottomAllotmentExpanded] = useState(false);
 
   const leftAllotmentRef = useRef<AllotmentHandle>(null!);
   const bottomAllotmentRef = useRef<AllotmentHandle>(null!);
@@ -31,9 +33,8 @@ export function Allotments() {
   return (
     <>
       <div
-        className={styles.navbar}
+        className={`${styles.navbar} overflow-hidden` }
         style={{ maxHeight: navbarHeight, minWidth: "100vw" }}
-        className="overflow-hidden "
       >
         <ComplexNavbar />
       </div>
@@ -69,6 +70,8 @@ export function Allotments() {
               <Map />
               <Allotment.Pane minSize={minHeight} visible>
                 <AllotmentBottom
+                  expand={bottomAllotmentExpanded}
+                  setExpand={setBottomAllotmentExpanded}
                   collapsed={bottomAllotmentVisible}
                   setCollapsed={(newCollapsed: boolean) => {
                     setBottomAllotmentVisible(newCollapsed);

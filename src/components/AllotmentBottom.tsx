@@ -4,6 +4,8 @@ import { DataPreview } from "@/components/DataPreview";
 import { Shell } from "@/components/Shell";
 import { Workflow } from "@/components/Workflow";
 import { IconButton } from "@material-tailwind/react";
+import SimpleBar from 'simplebar-react';
+
 
 import {
   Tabs,
@@ -15,11 +17,15 @@ import {
 
 interface AllotmentBottomProps {
   collapsed: boolean;
+  expand: boolean;
   setCollapsed: (collapsed: boolean) => void;
+  setExpand: (expand: boolean) => void;
 }
 export const AllotmentBottom = ({
   collapsed,
   setCollapsed,
+  expand,
+  setExpand
 }: AllotmentBottomProps) => {
   const tabChoices = [
     {
@@ -55,10 +61,10 @@ export const AllotmentBottom = ({
   ];
 
   return (
-    <div className="container mx-auto m-4 px-4" data-testid="allotment-bottom">
+    <div className="geoduck-bottom-allotment container mx-auto m-4 px-4" data-testid="allotment-bottom">
       <div className="flex w-full h-100">
-        <div className="w-80 grow">
-          <Tabs value="shell">
+        <div className="geoduck-bottom-allotment-wrap w-80 grow">
+          <Tabs value="shell" className="geoduck-bottom-allotment-tabs">
             <TabsHeader>
               {tabChoices.map(({ label, value }) => (
                 <Tab
@@ -88,20 +94,26 @@ export const AllotmentBottom = ({
               ))}
             </TabsBody>
           </Tabs>
+            <div className="geoduck-bottom-allotment-buttons flex w-max gap-4">
+              <IconButton
+                onClick={()=>{
+                  setExpand(!expand);
+                }}>
+                  {expand ? <i class="fas fa-solid fa-expand"></i> : <i class="fas fa-solid fa-compress"></i>}
+                </IconButton>
+              <IconButton
+                onClick={() => {
+                  setCollapsed(!collapsed);
+                }}
+              >
+                {collapsed ? (
+                  <i className="fas fa-solid fa-chevron-up" />
+                ) : (
+                  <i className="fas fa-solid fa-chevron-down" />
+                )}
+              </IconButton>
+          </div>
         </div>
-      </div>
-      <div className="absolute top-0 right-0 p-4 pl-10">
-        <IconButton
-          onClick={() => {
-            setCollapsed(!collapsed);
-          }}
-        >
-          {collapsed ? (
-            <i className="fas fa-solid fa-angle-double-up" />
-          ) : (
-            <i className="fas fa-solid fa-angle-double-down" />
-          )}
-        </IconButton>
       </div>
     </div>
   );

@@ -15,7 +15,6 @@ export default function Home() {
         <div style={{ height: 100, width: 100 }}>
           <Allotments />
         </div>
-        <h1>end</h1>
       </main>
     </>
   );

@@ -5,6 +5,15 @@ import { MapContext } from "@/context/context";
 import * as rd from "@duckdb/react-duckdb";
 import { renderMapData } from "@/utils/mapFunctions";
 
+
+import {
+  Square3Stack3DIcon,
+  UserCircleIcon,
+  Cog6ToothIcon,
+  RectangleStackIcon,
+  SwatchIcon,
+} from "@heroicons/react/24/solid";
+
 import {
   Tabs,
   TabsHeader,
@@ -137,11 +146,13 @@ export default function TransparentTabs() {
     {
       label: "Layers",
       value: "layers",
+      icon: RectangleStackIcon,
       desc: <Layers />,
     },
     {
       label: "Components",
       value: "components",
+      icon: SwatchIcon,
       desc: <LayerCard />,
     },
   ];
@@ -149,18 +160,21 @@ export default function TransparentTabs() {
   return (
     <Tabs value="layers" className="max-w-[40rem]">
       <TabsHeader
-        className="bg-transparent"
+        className="rounded-none border-b border-blue-gray-50 bg-transparent p-0"
         indicatorProps={{
-          className: "bg-blue-500/10 shadow-none text-blue-500",
+          className: "bg-transparent border-b-2 border-blue-500 shadow-none rounded-none",
         }}
       >
-        {tabChoices.map(({ label, value, desc }) => (
+        {tabChoices.map(({ label, value, desc, icon }) => (
           <Tab
             key={value}
             value={value}
             data-testid={`allotment-left-tab-${value}`}
           >
-            {label}
+            <div className="flex items-center gap-2">
+              {React.createElement(icon, { className: "w-5 h-5" })}
+              {label}
+            </div>
           </Tab>
         ))}
       </TabsHeader>
