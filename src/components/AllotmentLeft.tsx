@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { MapContext } from "@/context/context";
 import * as rd from "@duckdb/react-duckdb";
 import { renderMapData } from "@/utils/mapFunctions";
-
+import { Switch } from "@material-tailwind/react";
 
 import {
   Square3Stack3DIcon,
@@ -12,9 +12,16 @@ import {
   Cog6ToothIcon,
   RectangleStackIcon,
   SwatchIcon,
+  ChevronRightIcon, 
+  ChevronDownIcon,
+  PresentationChartBarIcon,
+  ShoppingBagIcon,
+  InboxIcon,
+  PowerIcon
 } from "@heroicons/react/24/solid";
 
 import {
+  Accordion,
   Tabs,
   TabsHeader,
   TabsBody,
@@ -27,25 +34,39 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import {
+  List,
+  ListItem,
+  ListItemPrefix,
+  ListItemSuffix,
+  Chip,
+  AccordionHeader,
+  AccordionBody,
+  Alert,
+  Input,
+} from "@material-tailwind/react";
 import { RenderLayer } from "@/utils/mapFunctions";
 import { ModalAddLayer } from "@/components/ModalAddLayer";
 
 function LayerCard(props) {
   const { layer } = props;
 
+
   return (
     <>
       {layer ? (
-        <Card className="w-100% my-0.5 rounded-md	">
-          <CardBody className="text-left">
-            <Typography className="text-base">
-              <b>{layer.name}</b>
-            </Typography>
-          </CardBody>
-          <CardFooter divider className="uppercase">
-            <Typography className="text-sm"> {layer.type}</Typography>
-          </CardFooter>
-        </Card>
+        <ListItem>
+          <ListItemPrefix>
+              <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+          </ListItemPrefix>
+          <Typography variant="h6" color="blue-gray">
+              {layer.name} 
+          </Typography>
+          {' - '}
+          <Typography variant="small" color="gray" className="font-normal">
+              {layer.type}
+          </Typography>        
+        </ListItem>
       ) : (
         <p>No components defined yet.</p>
       )}
@@ -59,7 +80,13 @@ function Layers() {
     { name: "cities", type: "point", tableName: "cities" },
     { name: "ent", type: "polygon", tableName: "ent" },
   ]);
+
+
   const [collapsed, setCollapsed] = useState(false);
+  const [open, setOpen] = React.useState(0);
+  const handleOpen = (value) => {
+    setOpen(open === value ? 0 : value);
+  };
   const db = rd.useDuckDB();
   const { map } = useContext(MapContext);
 
@@ -86,62 +113,57 @@ function Layers() {
     <div className="flex-column">
       <div className="flex flex-row">
         <div>
-          <Button
-            size="sm"
-            color="white"
-            className="flex items-center gap-3 outline outline-offset-2 outline-2	hover:outline-4"
-            onClick={() => {
-              setCollapsed(!collapsed);
-            }}
-          >
-            {collapsed ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.5 15.75l7.5-7.5 7.5 7.5"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                />
-              </svg>
-            )}
-            Map Layers
-          </Button>
+      <List>
+        <Accordion
+          open={open === 1}
+          icon={
+            <ChevronDownIcon
+              strokeWidth={2.5}
+              className={`mx-auto h-4 w-4 transition-transform ${open === 1 ? "rotate-180" : ""}`}
+            />
+          }
+        >
+          <ListItem className="p-0" selected={open === 1}>
+            <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3">
+              <ListItemPrefix>
+                <PresentationChartBarIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              <Typography color="blue-gray" className="mr-auto font-normal">
+                Map Layers
+              </Typography>
+              <ListItemSuffix>
+                  <ModalAddLayer addLayerFunction={AddLayer} />
+             </ListItemSuffix>
+            </AccordionHeader>
+          </ListItem>
+          <AccordionBody className="py-1">
+            <List className="p-0">
+             {layers.map((layer) => <LayerCard key={layer.name} layer={layer} />)}
+            </List>
+          </AccordionBody>
+        </Accordion>
+      </List>
         </div>
-        <div className="px-4">
-          <ModalAddLayer addLayerFunction={AddLayer} />
-        </div>
+
       </div>
-      <div className="py-5 pl-2">
-        {!collapsed
-          ? layers.map((layer) => <LayerCard key={layer.name} layer={layer} />)
-          : null}
-      </div>
+      
     </div>
   );
 }
 
-export default function TransparentTabs() {
+interface AllotmentLeftProps {
+  collapsed: boolean;
+  setCollapsed: (collapsed: boolean) => void;
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+}
+export const AllotmentLeft = ({
+  collapsed,
+  setCollapsed,
+  darkMode,
+  toggleDarkMode
+}: AllotmentLeftProps) => {
+
   const tabChoices = [
     {
       label: "Layers",
@@ -158,7 +180,8 @@ export default function TransparentTabs() {
   ];
 
   return (
-    <Tabs value="layers" className="max-w-[40rem]">
+    <div data-testid="allotment-left">
+      <Tabs value="layers" className="max-w-[40rem]">
       <TabsHeader
         className="rounded-none border-b border-blue-gray-50 bg-transparent p-0"
         indicatorProps={{
@@ -185,34 +208,38 @@ export default function TransparentTabs() {
           </TabPanel>
         ))}
       </TabsBody>
+      <List>
+      <hr className="my-2 border-blue-gray-50" />
+        <ListItem>
+          <ListItemPrefix>
+            <i class="fa-solid fa-file h-5 w-5"></i>
+          </ListItemPrefix>
+          Docs
+        </ListItem>
+        <ListItem>
+          <ListItemPrefix>
+            <i className="fa-brands fa-github h-5 w-5"></i>
+          </ListItemPrefix>
+          Github
+        </ListItem>
+        <ListItem>
+          <ListItemPrefix>
+            <i class="fas fa-life-ring  h-5 w-5"></i>
+          </ListItemPrefix>
+          Help
+        </ListItem>
+        <hr className="my-2 border-blue-gray-50" />
+        <ListItem onClick={()=>{
+          toggleDarkMode();
+        }}>
+          <ListItemPrefix>
+          {darkMode ? <i class="fa-solid fa-moon h-5 w-5"></i>  : <i class="fa-solid fa-sun h-5 w-5"></i> }
+          
+          </ListItemPrefix>
+          {darkMode ? 'Dark Mode' : 'Light Mode'}
+        </ListItem>
+      </List>
     </Tabs>
-  );
-}
-
-interface AllotmentLeftProps {
-  collapsed: boolean;
-  setCollapsed: (collapsed: boolean) => void;
-}
-export const AllotmentLeft = ({
-  collapsed,
-  setCollapsed,
-}: AllotmentLeftProps) => {
-  return (
-    <div data-testid="allotment-left">
-      <TransparentTabs />
-      <div className="absolute bottom-0">
-        <IconButton
-          onClick={() => {
-            setCollapsed(!collapsed);
-          }}
-        >
-          {collapsed ? (
-            <i className="fas fa-solid fa-angle-double-right" />
-          ) : (
-            <i className="fas fa-solid fa-angle-double-left" />
-          )}
-        </IconButton>
-      </div>
     </div>
   );
 };

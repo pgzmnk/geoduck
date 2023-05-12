@@ -19,6 +19,11 @@ export function Allotments() {
   const [leftAllotmentVisible, setLeftAllotmentVisible] = useState(true);
   const [bottomAllotmentVisible, setBottomAllotmentVisible] = useState(true);
   const [bottomAllotmentExpanded, setBottomAllotmentExpanded] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);  
+  }
 
   const leftAllotmentRef = useRef<AllotmentHandle>(null!);
   const bottomAllotmentRef = useRef<AllotmentHandle>(null!);
@@ -33,31 +38,33 @@ export function Allotments() {
   return (
     <>
       <div
-        className={`${styles.navbar} overflow-hidden` }
+        className={`${styles.navbar} overflow-hidden ${darkMode ? 'dark': 'light'}` }
         style={{ maxHeight: navbarHeight, minWidth: "100vw" }}
       >
-        <ComplexNavbar />
+        <ComplexNavbar leftAllotmentVisible={leftAllotmentVisible} setLeftAllotmentVisible={setLeftAllotmentVisible} />
       </div>
       <div
-        className={styles.container}
+        className={`${styles.container} ${darkMode ? 'dark': 'light'}`}
         style={{
           minHeight: `calc(100vh - ${navbarHeight}px)`,
           minWidth: "100vw",
         }}
       >
-        <Allotment ref={leftAllotmentRef}>
-          <Allotment.Pane minSize={minWidth} maxSize={300} visible>
+        <Allotment ref={leftAllotmentRef} >
+          <Allotment.Pane minSize={minWidth} maxSize={300} visible={leftAllotmentVisible} >
             <AllotmentLeft
+              darkMode={darkMode}
+              toggleDarkMode={toggleDarkMode}
               collapsed={leftAllotmentVisible}
               setCollapsed={(newCollapsed: boolean) => {
                 setLeftAllotmentVisible(newCollapsed);
-                if (leftAllotmentRef.current) {
-                  if (newCollapsed) {
-                    leftAllotmentRef.current.resize([10, 400]);
-                  } else {
-                    leftAllotmentRef.current.reset();
-                  }
-                }
+                // if (leftAllotmentRef.current) {
+                //   if (newCollapsed) {
+                //     leftAllotmentRef.current.resize([10, 0]);
+                //   } else {
+                //     leftAllotmentRef.current.reset();
+                //   }
+                // }
               }}
             />
           </Allotment.Pane>

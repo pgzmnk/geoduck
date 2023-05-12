@@ -608,10 +608,10 @@
   resolved "https://registry.yarnpkg.com/@mapbox/whoots-js/-/whoots-js-3.1.0.tgz#497c67a1cef50d1a2459ba60f315e448d2ad87fe"
   integrity sha512-Es6WcD0nO5l+2BOQS4uLfNPYQaNDfbot3X1XUoloz+x0mPDS3eeORZJl06HXjwBG1fOGwCRnzK88LMdxKRrd6Q==
 
-"@material-tailwind/react@^1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@material-tailwind/react/-/react-1.4.2.tgz#e068f3e6c547537b597e57b0d5c3da3ddb642994"
-  integrity sha512-XJ1Ie8xXMV2qZEtm0LgnJNK+8Lh1Si8TvOf0jKWGI2rHleD8U/Zype6k1AyRhBHHUwc6B19w8uR1fCIFvumURQ==
+"@material-tailwind/react@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@material-tailwind/react/-/react-2.0.0.tgz#54bce1485ff06b91cfaaf6d4d491d7c3cebf22de"
+  integrity sha512-YwzSQ8rJ7nzhFQYxyv9+yjAsq7E5zNJrch9KxQqs7j6xNN/eD9y44WolnomTm6EADQMOGvQao8qX6RhQ1rHz6w==
   dependencies:
     "@floating-ui/react" "^0.19.0"
     classnames "^2.3.2"

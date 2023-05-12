@@ -8,7 +8,7 @@ import {
   Card,
 } from "@material-tailwind/react";
 
-export function ComplexNavbar() {
+export function ComplexNavbar({leftAllotmentVisible, setLeftAllotmentVisible}) {
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -49,6 +49,9 @@ export function ComplexNavbar() {
       data-testid="navbar-top"
     >
       <div className="flex items-center justify-between text-blue-gray-900">
+          <IconButton variant="text" onClick={()=> setLeftAllotmentVisible(!leftAllotmentVisible)}>
+            {leftAllotmentVisible ? <i class="fa-solid fa-chevron-left h-4 w-4"></i> : <i class="fa-solid fa-bars h-4 w-4"></i>}
+          </IconButton>
         <Typography className="text-xl	mr-4 py-1.5 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
           🦆 GeoDuck
         </Typography>
