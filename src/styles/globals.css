@@ -96,6 +96,6 @@ body {
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   overflow: unset !important;
 }
-.split-view split-view-horizontal .split-view-view nav {
+ul.geoduck-sidebar-tab-nav{
   padding-top: 10px !important;
 }
