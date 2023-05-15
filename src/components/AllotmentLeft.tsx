@@ -132,7 +132,7 @@ function Layers() {
                 Map Layers
               </Typography>
               <ListItemSuffix>
-                  <ModalAddLayer addLayerFunction={AddLayer} />
+                  {/* <ModalAddLayer addLayerFunction={AddLayer} /> */}
              </ListItemSuffix>
             </AccordionHeader>
           </ListItem>
