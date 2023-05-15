@@ -85,5 +85,10 @@ body {
 }
 .shell_container .term_container .xterm-screen {
   width: 100% !important;
-  overflow: scroll;
+}
+.geoduck-bottom-allotment.container {
+  max-width: 100%;
+}
+.geoduck-bottom-allotment-wrap .data-collection {
+  max-height: 16rem !important;
 }
