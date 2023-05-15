@@ -92,3 +92,10 @@ body {
 .geoduck-bottom-allotment-wrap .data-collection {
   max-height: 16rem !important;
 }
+.Content_navbar__fRkEV.overflow-hidden.light {
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  overflow: unset !important;
+}
+.split-view split-view-horizontal .split-view-view nav {
+  padding-top: 10px !important;
+}
