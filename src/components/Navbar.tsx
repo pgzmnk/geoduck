@@ -44,14 +44,12 @@ export function ComplexNavbar({leftAllotmentVisible, setLeftAllotmentVisible}) {
   );
 
   return (
+    <>
     <Navbar
       className="sticky inset-0 z-10 max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4"
       data-testid="navbar-top"
     >
       <div className="flex items-center justify-between text-blue-gray-900">
-          <IconButton variant="text" onClick={()=> setLeftAllotmentVisible(!leftAllotmentVisible)}>
-            {leftAllotmentVisible ? <i class="fa-solid fa-table-columns h-4 w-4"></i> : <i class="fa-solid fa-bars h-4 w-4"></i>}
-          </IconButton>
         <Typography className="text-xl	mr-4 py-1.5 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
           🦆 GeoDuck
         </Typography>
@@ -71,5 +69,7 @@ export function ComplexNavbar({leftAllotmentVisible, setLeftAllotmentVisible}) {
         </div>
       </div>
     </Navbar>
+
+    </>
   );
 }

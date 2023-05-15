@@ -10,6 +10,18 @@ import { AllotmentLeft } from "@/components/AllotmentLeft";
 import Map from "@/components/Map";
 import { InitFunctions } from "@/utils/initFunctions";
 import { ComplexNavbar } from "@/components/Navbar";
+import {
+  IconButton,
+  List,
+  ListItem,
+  ListItemPrefix,
+  ListItemSuffix,
+  Chip,
+  AccordionHeader,
+  AccordionBody,
+  Alert,
+  Input,
+} from "@material-tailwind/react";
 
 const minHeight = 70;
 
@@ -45,6 +57,9 @@ export function Allotments() {
         style={{ maxHeight: navbarHeight, minWidth: "100vw" }}
       >
         <ComplexNavbar leftAllotmentVisible={leftAllotmentVisible} setLeftAllotmentVisible={setLeftAllotmentVisible} />
+        <IconButton variant="text" onClick={()=> setLeftAllotmentVisible(!leftAllotmentVisible)} className="geoduck-left-allotment-collapse fixed bottom-3 left-0 bg-blue-500 text-white z-50 rounded-r-lg">
+            {leftAllotmentVisible ? <i class="fa-solid fa-table-columns h-4 w-4"></i> : <i class="fa-solid fa-bars h-4 w-4"></i>}
+        </IconButton>
       </div>
       <div
         className={`${styles.container} ${darkMode ? 'dark': 'light'}`}

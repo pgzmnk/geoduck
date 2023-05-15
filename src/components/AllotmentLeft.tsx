@@ -179,10 +179,12 @@ export const AllotmentLeft = ({
   ];
 
   return (
+    <>
+    
     <div data-testid="allotment-left">
       <Tabs value="layers" className="max-w-[40rem]">
       <TabsHeader
-        className="rounded-none border-b border-blue-gray-50 bg-transparent p-0"
+        className="geoduck-sidebar-tab-nav rounded-none border-b border-blue-gray-50 bg-transparent p-0"
         indicatorProps={{
           className: "bg-transparent border-b-2 border-blue-500 shadow-none rounded-none",
         }}
@@ -240,5 +242,6 @@ export const AllotmentLeft = ({
       </List>
     </Tabs>
     </div>
+    </>
   );
 };
