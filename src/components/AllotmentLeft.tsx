@@ -113,6 +113,7 @@ function Layers() {
     <div className="flex-column">
       <div className="flex flex-row">
         <div>
+        
       <List>
         <Accordion
           open={open === 1}
@@ -131,9 +132,6 @@ function Layers() {
               <Typography color="blue-gray" className="mr-auto font-normal">
                 Map Layers
               </Typography>
-              <ListItemSuffix>
-                  {/* <ModalAddLayer addLayerFunction={AddLayer} /> */}
-             </ListItemSuffix>
             </AccordionHeader>
           </ListItem>
           <AccordionBody className="py-1">
@@ -142,6 +140,7 @@ function Layers() {
             </List>
           </AccordionBody>
         </Accordion>
+        <ModalAddLayer addLayerFunction={AddLayer} />
       </List>
         </div>
 

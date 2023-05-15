@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from "react";
 import * as React from "react";
-
+import { useWindowSize } from "rooks";
 import { Allotment, AllotmentHandle } from "allotment";
 import "allotment/dist/style.css";
 import 'simplebar-react/dist/simplebar.min.css';
@@ -12,6 +12,7 @@ import { InitFunctions } from "@/utils/initFunctions";
 import { ComplexNavbar } from "@/components/Navbar";
 
 const minHeight = 70;
+
 const minWidth = 50;
 const navbarHeight = 100;
 
@@ -20,11 +21,13 @@ export function Allotments() {
   const [bottomAllotmentVisible, setBottomAllotmentVisible] = useState(true);
   const [bottomAllotmentExpanded, setBottomAllotmentExpanded] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const { innerWidth, innerHeight, outerHeight, outerWidth } = useWindowSize();
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);  
   }
 
+  const maxHeight = innerHeight;
   const leftAllotmentRef = useRef<AllotmentHandle>(null!);
   const bottomAllotmentRef = useRef<AllotmentHandle>(null!);
   const onHeightChange = useCallback(
@@ -78,7 +81,16 @@ export function Allotments() {
               <Allotment.Pane minSize={minHeight} visible>
                 <AllotmentBottom
                   expand={bottomAllotmentExpanded}
-                  setExpand={setBottomAllotmentExpanded}
+                  setExpand={(isExpanded: boolean) => {
+                    setBottomAllotmentExpanded(isExpanded);
+                    if (bottomAllotmentRef.current) {
+                      if (isExpanded) {
+                        bottomAllotmentRef.current.resize([0, 600]);
+                      } else {
+                        bottomAllotmentRef.current.reset();
+                      }
+                    }
+                  }}
                   collapsed={bottomAllotmentVisible}
                   setCollapsed={(newCollapsed: boolean) => {
                     setBottomAllotmentVisible(newCollapsed);

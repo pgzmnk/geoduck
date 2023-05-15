@@ -8,6 +8,8 @@ import {
   Card,
   Select,
   Option,
+  ListItem,
+  ListItemPrefix
 } from "@material-tailwind/react";
 import { Dialog, Transition } from "@headlessui/react";
 
@@ -37,9 +39,12 @@ export function ModalAddLayer(props: ModalAddLayerProps) {
 
   return (
     <>
-      <IconButton onClick={openModal}>
-        <i className="fas fa-plus" />
-      </IconButton>
+      <ListItem onClick={openModal}>
+          <ListItemPrefix>
+            <i class="fas fa-plus h-5 w-5"></i>
+          </ListItemPrefix>
+          Add Layer
+        </ListItem>
       <Transition appear show={isOpen} as={Fragment}>
         <div className="fixed ">
           <Dialog as="div" className="relative z-20" onClose={closeModal}>

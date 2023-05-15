@@ -86,7 +86,7 @@ export const AllotmentBottom = ({
                         onClick={()=>{
                           setExpand(!expand);
                         }}>
-                          {expand ? <i class="fas fa-solid fa-expand"></i> : <i class="fas fa-solid fa-compress"></i>}
+                          {expand ?  <i class="fas fa-solid fa-compress"></i> : <i class="fas fa-solid fa-expand"></i>}
                         </IconButton>
                       <IconButton
                         onClick={() => {
