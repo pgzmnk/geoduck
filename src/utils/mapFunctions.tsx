@@ -3,7 +3,7 @@ import { runQueryDuckDb } from "@/utils/duckdbFunctions";
 import { MapContext } from "@/context/context";
 import * as wkt from "wkt";
 import * as rd from "@duckdb/react-duckdb";
-import { loadInitialData } from "@/utils/duckdbFunctions"; // remove
+// remove
 
 export async function createOrReplaceDataset() {}
 

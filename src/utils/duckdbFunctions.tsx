@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import * as rd from "@duckdb/react-duckdb";
 
 export async function loadInitialData() {

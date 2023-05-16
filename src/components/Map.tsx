@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import mapboxgl from "mapbox-gl";
 import styles from "./Map.module.css";

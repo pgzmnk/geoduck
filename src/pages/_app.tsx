@@ -16,7 +16,7 @@ import "@/styles/shell.css";
 import "xterm/css/xterm.css";
 
 import { ThemeProvider } from "@material-tailwind/react";
-import { ThemeProvider as NextThemeProvider } from 'next-themes'
+import { ThemeProvider as NextThemeProvider } from "next-themes";
 import Context from "../context/context";
 
 class ExtraURL {

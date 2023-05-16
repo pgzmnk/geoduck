@@ -1,28 +1,16 @@
-import { useTheme } from 'next-themes';
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useTheme } from "next-themes";
+import { useCallback, useEffect, useRef, useState } from "react";
 import * as React from "react";
 import { useWindowSize } from "rooks";
 import { Allotment, AllotmentHandle } from "allotment";
 import "allotment/dist/style.css";
-import 'simplebar-react/dist/simplebar.min.css';
+import "simplebar-react/dist/simplebar.min.css";
 import styles from "@/styles/Content.module.css";
 import { AllotmentBottom } from "@/components/AllotmentBottom";
 import { AllotmentLeft } from "@/components/AllotmentLeft";
 import Map from "@/components/Map";
 import { InitFunctions } from "@/utils/initFunctions";
 import { ComplexNavbar } from "@/components/Navbar";
-import {
-  IconButton,
-  List,
-  ListItem,
-  ListItemPrefix,
-  ListItemSuffix,
-  Chip,
-  AccordionHeader,
-  AccordionBody,
-  Alert,
-  Input,
-} from "@material-tailwind/react";
 
 const minHeight = 70;
 
@@ -31,17 +19,17 @@ const navbarHeight = 100;
 
 export function Allotments() {
   const { theme, setTheme } = useTheme();
-  const [currentTheme, setCurrentTheme] = useState('light');
+  const [currentTheme, setCurrentTheme] = useState("light");
   const [leftAllotmentVisible, setLeftAllotmentVisible] = useState(true);
   const [bottomAllotmentVisible, setBottomAllotmentVisible] = useState(true);
   const [bottomAllotmentExpanded, setBottomAllotmentExpanded] = useState(false);
   const { innerWidth, innerHeight, outerHeight, outerWidth } = useWindowSize();
 
   const toggleDarkMode = () => {
-    setTheme(theme == 'dark' ? 'light': 'dark');   
-  }
+    setTheme(theme == "dark" ? "light" : "dark");
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     setCurrentTheme(theme);
   }, [theme]);
 
@@ -59,12 +47,27 @@ export function Allotments() {
   return (
     <>
       <div
-        className={`${styles.navbar} overflow-hidden ${currentTheme}` }
+        className={`${styles.navbar} overflow-hidden ${currentTheme}`}
         style={{ maxHeight: navbarHeight, minWidth: "100vw" }}
       >
-        <ComplexNavbar leftAllotmentVisible={leftAllotmentVisible} setLeftAllotmentVisible={setLeftAllotmentVisible} />
-        <button id={'geoduck-left-allotment-collapse'} onClick={()=> setLeftAllotmentVisible(!leftAllotmentVisible)} className={`geoduck-left-allotment-collapse fixed bottom-3 left-0 bg-blue-500 text-white z-50 rounded-r-lg ${leftAllotmentVisible ? 'geoduck-allotment-visible': 'geoduck-allotment-invisible'}`}>
-            {leftAllotmentVisible ? <i class="fa-solid fa-table-columns h-4 w-4"></i> : <i class="fa-solid fa-bars h-4 w-4"></i>}
+        <ComplexNavbar
+          leftAllotmentVisible={leftAllotmentVisible}
+          setLeftAllotmentVisible={setLeftAllotmentVisible}
+        />
+        <button
+          id={"geoduck-left-allotment-collapse"}
+          onClick={() => setLeftAllotmentVisible(!leftAllotmentVisible)}
+          className={`geoduck-left-allotment-collapse fixed bottom-3 left-0 bg-blue-500 text-white z-50 rounded-r-lg ${
+            leftAllotmentVisible
+              ? "geoduck-allotment-visible"
+              : "geoduck-allotment-invisible"
+          }`}
+        >
+          {leftAllotmentVisible ? (
+            <i class="fa-solid fa-table-columns h-4 w-4"></i>
+          ) : (
+            <i class="fa-solid fa-bars h-4 w-4"></i>
+          )}
         </button>
       </div>
       <div
@@ -74,15 +77,29 @@ export function Allotments() {
           minWidth: "100vw",
         }}
       >
-        <Allotment ref={leftAllotmentRef} onChange={() => {
-          if( document.getElementById('geoduck-left-allotment-collapse') && document.getElementById('geoduck-allotment-left')){
-            document.getElementById('geoduck-left-allotment-collapse').style.left = document.getElementById('geoduck-allotment-left').offsetWidth+ 32+ 'px';
-          }
-        }} >
-          <Allotment.Pane minSize={minWidth} maxSize={300} visible={leftAllotmentVisible}>
+        <Allotment
+          ref={leftAllotmentRef}
+          onChange={() => {
+            if (
+              document.getElementById("geoduck-left-allotment-collapse") &&
+              document.getElementById("geoduck-allotment-left")
+            ) {
+              document.getElementById(
+                "geoduck-left-allotment-collapse"
+              ).style.left =
+                document.getElementById("geoduck-allotment-left").offsetWidth +
+                32 +
+                "px";
+            }
+          }}
+        >
+          <Allotment.Pane
+            minSize={minWidth}
+            maxSize={300}
+            visible={leftAllotmentVisible}
+          >
             <AllotmentLeft
-              
-              darkMode={currentTheme == 'dark'}
+              darkMode={currentTheme == "dark"}
               toggleDarkMode={toggleDarkMode}
               collapsed={leftAllotmentVisible}
               setCollapsed={(newCollapsed: boolean) => {
