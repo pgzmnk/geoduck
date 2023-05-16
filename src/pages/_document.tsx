@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en" >
+    <Html lang="en" suppressHydrationWarning>
       <Head />
       <link
         rel="stylesheet"
@@ -12,7 +12,7 @@ export default function Document() {
         referrerPolicy="no-referrer"
       />
       <body>
-        <Main />
+        <Main/>
         <NextScript />
       </body>
     </Html>

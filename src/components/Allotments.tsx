@@ -1,5 +1,5 @@
 import { useTheme } from 'next-themes';
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import * as React from "react";
 import { useWindowSize } from "rooks";
 import { Allotment, AllotmentHandle } from "allotment";
@@ -31,17 +31,19 @@ const navbarHeight = 100;
 
 export function Allotments() {
   const { theme, setTheme } = useTheme();
+  const [currentTheme, setCurrentTheme] = useState('light');
   const [leftAllotmentVisible, setLeftAllotmentVisible] = useState(true);
   const [bottomAllotmentVisible, setBottomAllotmentVisible] = useState(true);
   const [bottomAllotmentExpanded, setBottomAllotmentExpanded] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const { innerWidth, innerHeight, outerHeight, outerWidth } = useWindowSize();
 
   const toggleDarkMode = () => {
-    setTheme(darkMode ? 'light': 'dark'); 
-    setDarkMode(!darkMode);
-     
+    setTheme(theme == 'dark' ? 'light': 'dark');   
   }
+
+  useEffect(()=>{
+    setCurrentTheme(theme);
+  }, [theme]);
 
   const maxHeight = innerHeight;
   const leftAllotmentRef = useRef<AllotmentHandle>(null!);
@@ -57,7 +59,7 @@ export function Allotments() {
   return (
     <>
       <div
-        className={`${styles.navbar} overflow-hidden ${darkMode ? 'dark': 'light'}` }
+        className={`${styles.navbar} overflow-hidden ${currentTheme}` }
         style={{ maxHeight: navbarHeight, minWidth: "100vw" }}
       >
         <ComplexNavbar leftAllotmentVisible={leftAllotmentVisible} setLeftAllotmentVisible={setLeftAllotmentVisible} />
@@ -66,7 +68,7 @@ export function Allotments() {
         </IconButton>
       </div>
       <div
-        className={`${styles.container} ${darkMode ? 'dark': 'light'}`}
+        className={`${styles.container} ${currentTheme}`}
         style={{
           minHeight: `calc(100vh - ${navbarHeight}px)`,
           minWidth: "100vw",
@@ -75,7 +77,7 @@ export function Allotments() {
         <Allotment ref={leftAllotmentRef} >
           <Allotment.Pane minSize={minWidth} maxSize={300} visible={leftAllotmentVisible} >
             <AllotmentLeft
-              darkMode={darkMode}
+              darkMode={currentTheme == 'dark'}
               toggleDarkMode={toggleDarkMode}
               collapsed={leftAllotmentVisible}
               setCollapsed={(newCollapsed: boolean) => {

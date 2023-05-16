@@ -74,7 +74,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <DuckDBPlatform logger={logger} bundles={DUCKDB_BUNDLES}>
       <DuckDBProvider>
         <DuckDBConnectionProvider>
-          <NextThemeProvider>
+          <NextThemeProvider enableSystem={false}>
             <ThemeProvider value={customTheme}>
               <Context>
                 <Component {...pageProps} />
