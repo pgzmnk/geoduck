@@ -63,9 +63,9 @@ export function Allotments() {
         style={{ maxHeight: navbarHeight, minWidth: "100vw" }}
       >
         <ComplexNavbar leftAllotmentVisible={leftAllotmentVisible} setLeftAllotmentVisible={setLeftAllotmentVisible} />
-        <IconButton variant="text" onClick={()=> setLeftAllotmentVisible(!leftAllotmentVisible)} className="geoduck-left-allotment-collapse fixed bottom-3 left-0 bg-blue-500 text-white z-50 rounded-r-lg">
+        <button  onClick={()=> setLeftAllotmentVisible(!leftAllotmentVisible)} className="geoduck-left-allotment-collapse fixed bottom-3 left-0 bg-blue-500 text-white z-50 rounded-r-lg">
             {leftAllotmentVisible ? <i class="fa-solid fa-table-columns h-4 w-4"></i> : <i class="fa-solid fa-bars h-4 w-4"></i>}
-        </IconButton>
+        </button>
       </div>
       <div
         className={`${styles.container} ${currentTheme}`}

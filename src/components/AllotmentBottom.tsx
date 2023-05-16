@@ -61,7 +61,7 @@ export const AllotmentBottom = ({
   ];
 
   return (
-    <div className="geoduck-bottom-allotment container mx-auto p-4 px-4 dark:bg-gray-800" data-testid="allotment-bottom">
+    <div className="geoduck-bottom-allotment container mx-auto p-4 px-4 dark:bg-zinc-800" data-testid="allotment-bottom">
       <div className="flex w-full h-100">
         <div className="geoduck-bottom-allotment-wrap w-80 grow">
           <Tabs value="shell" className="geoduck-bottom-allotment-tabs">
