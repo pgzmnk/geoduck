@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"**/*.{js,ts,tsx}\"",
+    "format": "npx eslint . --fix && prettier --write \"**/*.{js,ts,tsx}\"",
     "e2e": "start-server-and-test dev http://localhost:3000 \"cypress open --e2e\"",
     "e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\""
   },
@@ -62,6 +62,7 @@
     "copy-webpack-plugin": "^11.0.0",
     "cypress": "^12.11.0",
     "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "next-transpile-modules": "^10.0.0",
     "pre-commit": "^1.2.2",
     "prettier": "^2.8.8",
