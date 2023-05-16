@@ -105,5 +105,9 @@ button.geoduck-left-allotment-collapse {
   height: 40px;
   top: 50%;
   transform: translateY(-50%);
-  left: 300px !important;
+  left: 300px;
+}
+
+button.geoduck-left-allotment-collapse.geoduck-allotment-invisible {
+  left: 0px !important;
 }

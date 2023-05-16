@@ -63,7 +63,7 @@ export function Allotments() {
         style={{ maxHeight: navbarHeight, minWidth: "100vw" }}
       >
         <ComplexNavbar leftAllotmentVisible={leftAllotmentVisible} setLeftAllotmentVisible={setLeftAllotmentVisible} />
-        <button  onClick={()=> setLeftAllotmentVisible(!leftAllotmentVisible)} className="geoduck-left-allotment-collapse fixed bottom-3 left-0 bg-blue-500 text-white z-50 rounded-r-lg">
+        <button id={'geoduck-left-allotment-collapse'} onClick={()=> setLeftAllotmentVisible(!leftAllotmentVisible)} className={`geoduck-left-allotment-collapse fixed bottom-3 left-0 bg-blue-500 text-white z-50 rounded-r-lg ${leftAllotmentVisible ? 'geoduck-allotment-visible': 'geoduck-allotment-invisible'}`}>
             {leftAllotmentVisible ? <i class="fa-solid fa-table-columns h-4 w-4"></i> : <i class="fa-solid fa-bars h-4 w-4"></i>}
         </button>
       </div>
@@ -74,9 +74,14 @@ export function Allotments() {
           minWidth: "100vw",
         }}
       >
-        <Allotment ref={leftAllotmentRef} >
-          <Allotment.Pane minSize={minWidth} maxSize={300} visible={leftAllotmentVisible} >
+        <Allotment ref={leftAllotmentRef} onChange={() => {
+          if( document.getElementById('geoduck-left-allotment-collapse') && document.getElementById('geoduck-allotment-left')){
+            document.getElementById('geoduck-left-allotment-collapse').style.left = document.getElementById('geoduck-allotment-left').offsetWidth+ 32+ 'px';
+          }
+        }} >
+          <Allotment.Pane minSize={minWidth} maxSize={300} visible={leftAllotmentVisible}>
             <AllotmentLeft
+              
               darkMode={currentTheme == 'dark'}
               toggleDarkMode={toggleDarkMode}
               collapsed={leftAllotmentVisible}

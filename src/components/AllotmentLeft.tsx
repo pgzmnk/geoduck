@@ -59,11 +59,11 @@ function LayerCard(props) {
           <ListItemPrefix>
               <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
           </ListItemPrefix>
-          <Typography variant="h6" color="blue-gray">
+          <Typography variant="h6" color="blue-gray" className="dark:text-white">
               {layer.name} 
           </Typography>
           {' - '}
-          <Typography variant="small" color="gray" className="font-normal">
+          <Typography variant="small" color="gray" className="font-normal dark:text-white">
               {layer.type}
           </Typography>        
         </ListItem>
@@ -110,7 +110,7 @@ function Layers() {
 
   // render layer cards on ui
   return (
-    <div className="flex-column ">
+    <div id="geoduck-allotment-left" className="flex-column ">
       <div className="flex flex-row">
         <div>
         
