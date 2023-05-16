@@ -6,7 +6,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-  --card-background-color: rgb(255, 255, 255); /* allotment */
+  --card-background-color: rgb(255, 255, 255);
+  /* allotment */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,13 +20,11 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
+
 @tailwind base;
 
 /* Firefox */
@@ -38,8 +37,8 @@ body {
 @tailwind utilities;
 
 :root {
-  --primary:rgba(236 239 241 06);
-  --secondary:#2196f3;
+  --primary: rgba(236 239 241 06);
+  --secondary: #2196f3;
 }
 
 @tailwind base;
@@ -52,7 +51,7 @@ body {
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width:8px;
+  width: 8px;
 }
 
 *::-webkit-scrollbar-track {
@@ -68,6 +67,7 @@ body {
 
 @tailwind components;
 @tailwind utilities;
+
 .geoduck-bottom-tabs-header {
   display: flex;
   flex-wrap: wrap;
@@ -77,28 +77,36 @@ body {
 .geoduck-bottom-tabs-header nav {
   width: 89%;
 }
+
 .geoduck-bottom-tabs-header .geoduck-bottom-allotment-buttons {
   width: 10%;
 }
+
 .shell_container .term_container {
   overflow: unset !important;
 }
+
 .shell_container .term_container .xterm-screen {
   width: 100% !important;
 }
+
 .geoduck-bottom-allotment.container {
   max-width: 100%;
 }
+
 .geoduck-bottom-allotment-wrap .data-collection {
   max-height: 16rem !important;
 }
+
 .Content_navbar__fRkEV.overflow-hidden.light {
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   overflow: unset !important;
 }
-ul.geoduck-sidebar-tab-nav{
+
+ul.geoduck-sidebar-tab-nav {
   padding-top: 10px !important;
 }
+
 button.geoduck-left-allotment-collapse {
   position: absolute;
   width: 40px;
