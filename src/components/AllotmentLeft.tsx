@@ -114,7 +114,7 @@ function Layers() {
       <div className="flex flex-row">
         <div>
         
-      <List>
+      <List className="dark:text-white">
         <Accordion
           open={open === 1}
           icon={
@@ -124,12 +124,12 @@ function Layers() {
             />
           }
         >
-          <ListItem className="p-0" selected={open === 1}>
-            <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3">
+          <ListItem className="p-0 dark:text-white" selected={open === 1}>
+            <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3 dark:text-white">
               <ListItemPrefix>
-                <PresentationChartBarIcon className="h-5 w-5" />
+                <PresentationChartBarIcon className="h-5 w-5 " />
               </ListItemPrefix>
-              <Typography color="blue-gray" className="mr-auto font-normal">
+              <Typography color="blue-gray" className="mr-auto font-normal dark:text-white">
                 Map Layers
               </Typography>
             </AccordionHeader>
@@ -183,9 +183,9 @@ export const AllotmentLeft = ({
     <div data-testid="allotment-left" className="dark:bg-gray-800 h-full">
       <Tabs value="layers" className="max-w-[40rem]">
       <TabsHeader
-        className="geoduck-sidebar-tab-nav rounded-none border-b border-blue-gray-50 bg-transparent p-0"
+        className="geoduck-sidebar-tab-nav rounded-none border-b border-blue-gray-50 bg-transparent p-0 "
         indicatorProps={{
-          className: "bg-transparent border-b-2 border-blue-500 shadow-none rounded-none",
+          className: "bg-transparent border-b-2 border-blue-500 shadow-none rounded-none ",
         }}
       >
         {tabChoices.map(({ label, value, desc, icon }) => (
@@ -194,8 +194,8 @@ export const AllotmentLeft = ({
             value={value}
             data-testid={`allotment-left-tab-${value}`}
           >
-            <div className="flex items-center gap-2">
-              {React.createElement(icon, { className: "w-5 h-5" })}
+            <div className="flex items-center gap-2 dark:text-white">
+              {React.createElement(icon, { className: "w-5 h-5 dark:text-white" })}
               {label}
             </div>
           </Tab>
@@ -210,26 +210,26 @@ export const AllotmentLeft = ({
       </TabsBody>
       <List>
       <hr className="my-2 border-blue-gray-50" />
-        <ListItem>
+        <ListItem className="dark:text-white">
           <ListItemPrefix>
-            <i class="fa-solid fa-file h-5 w-5"></i>
+            <i class="fa-solid fa-file h-5 w-5 dark:text-white"></i>
           </ListItemPrefix>
           Docs
         </ListItem>
-        <ListItem>
+        <ListItem className="dark:text-white">
           <ListItemPrefix>
-            <i className="fa-brands fa-github h-5 w-5"></i>
+            <i className="fa-brands fa-github h-5 w-5 dark:text-white"></i>
           </ListItemPrefix>
           Github
         </ListItem>
-        <ListItem>
+        <ListItem className="dark:text-white">
           <ListItemPrefix>
-            <i class="fas fa-life-ring  h-5 w-5"></i>
+            <i class="fas fa-life-ring  h-5 w-5 dark:text-white"></i>
           </ListItemPrefix>
           Help
         </ListItem>
         <hr className="my-2 border-blue-gray-50" />
-        <ListItem onClick={()=>{
+        <ListItem className="dark:text-white" onClick={()=>{
           toggleDarkMode();
         }}>
           <ListItemPrefix>
