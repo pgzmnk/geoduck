@@ -57,10 +57,11 @@ export function Allotments() {
         <button
           id={"geoduck-left-allotment-collapse"}
           onClick={() => setLeftAllotmentVisible(!leftAllotmentVisible)}
-          className={`geoduck-left-allotment-collapse fixed bottom-3 left-0 bg-blue-500 text-white z-50 rounded-r-lg ${leftAllotmentVisible
+          className={`geoduck-left-allotment-collapse fixed bottom-3 left-0 bg-blue-500 text-white z-50 rounded-r-lg ${
+            leftAllotmentVisible
               ? "geoduck-allotment-visible"
               : "geoduck-allotment-invisible"
-            }`}
+          }`}
         >
           {leftAllotmentVisible ? (
             <i className="fa-solid fa-table-columns h-4 w-4"></i>

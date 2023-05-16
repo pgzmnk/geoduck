@@ -41,7 +41,7 @@ const initialEdges = [
   { id: "4->5", source: "4", target: "5" },
 ];
 
-interface WorkflowProps { }
+interface WorkflowProps {}
 
 export function Workflow() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
