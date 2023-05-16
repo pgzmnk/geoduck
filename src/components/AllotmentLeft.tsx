@@ -110,7 +110,7 @@ function Layers() {
 
   // render layer cards on ui
   return (
-    <div className="flex-column">
+    <div className="flex-column ">
       <div className="flex flex-row">
         <div>
         
@@ -180,8 +180,7 @@ export const AllotmentLeft = ({
 
   return (
     <>
-    
-    <div data-testid="allotment-left">
+    <div data-testid="allotment-left" className="dark:bg-gray-800 h-full">
       <Tabs value="layers" className="max-w-[40rem]">
       <TabsHeader
         className="geoduck-sidebar-tab-nav rounded-none border-b border-blue-gray-50 bg-transparent p-0"
@@ -242,6 +241,7 @@ export const AllotmentLeft = ({
       </List>
     </Tabs>
     </div>
+    
     </>
   );
 };
