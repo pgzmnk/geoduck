@@ -18,6 +18,12 @@
         "args": "after-used",
         "argsIgnorePattern": "^_"
       }
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreDeclarationSort": true
+      }
     ]
   },
   "extends": [
