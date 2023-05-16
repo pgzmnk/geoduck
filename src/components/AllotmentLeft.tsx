@@ -55,7 +55,7 @@ function LayerCard(props) {
   return (
     <>
       {layer ? (
-        <ListItem>
+        <ListItem className="dark:hover:bg-slate-700 dark:text-white">
           <ListItemPrefix>
               <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
           </ListItemPrefix>
@@ -68,7 +68,7 @@ function LayerCard(props) {
           </Typography>        
         </ListItem>
       ) : (
-        <p>No components defined yet.</p>
+        <p className="dark:text-white">No components defined yet.</p>
       )}
     </>
   );
@@ -124,8 +124,8 @@ function Layers() {
             />
           }
         >
-          <ListItem className="p-0 dark:text-white" selected={open === 1}>
-            <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3 dark:text-white">
+          <ListItem className="p-0 dark:text-white dark:hover:bg-slate-700" selected={open === 1}>
+            <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3 dark:text-white dark:hover:bg-slate-700">
               <ListItemPrefix>
                 <PresentationChartBarIcon className="h-5 w-5 " />
               </ListItemPrefix>
@@ -210,26 +210,26 @@ export const AllotmentLeft = ({
       </TabsBody>
       <List>
       <hr className="my-2 border-blue-gray-50" />
-        <ListItem className="dark:text-white">
+        <ListItem className="dark:hover:bg-slate-700 dark:text-white">
           <ListItemPrefix>
             <i class="fa-solid fa-file h-5 w-5 dark:text-white"></i>
           </ListItemPrefix>
           Docs
         </ListItem>
-        <ListItem className="dark:text-white">
+        <ListItem className="dark:hover:bg-slate-700 dark:text-white">
           <ListItemPrefix>
             <i className="fa-brands fa-github h-5 w-5 dark:text-white"></i>
           </ListItemPrefix>
           Github
         </ListItem>
-        <ListItem className="dark:text-white">
+        <ListItem className="dark:hover:bg-slate-700 dark:text-white">
           <ListItemPrefix>
             <i class="fas fa-life-ring  h-5 w-5 dark:text-white"></i>
           </ListItemPrefix>
           Help
         </ListItem>
         <hr className="my-2 border-blue-gray-50" />
-        <ListItem className="dark:text-white" onClick={()=>{
+        <ListItem className="dark:hover:bg-slate-700 dark:text-white" onClick={()=>{
           toggleDarkMode();
         }}>
           <ListItemPrefix>

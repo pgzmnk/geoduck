@@ -39,7 +39,7 @@ export function ModalAddLayer(props: ModalAddLayerProps) {
 
   return (
     <>
-      <ListItem onClick={openModal}>
+      <ListItem onClick={openModal} className="dark:hover:bg-slate-700 dark:text-white">
           <ListItemPrefix>
             <i class="fas fa-plus h-5 w-5"></i>
           </ListItemPrefix>
