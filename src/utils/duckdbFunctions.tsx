@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import * as rd from "@duckdb/react-duckdb";
 
-export async function loadInitialData() {
+export async function LoadInitialData() {
   const db = rd.useDuckDB();
 
   var tableNames = [];
