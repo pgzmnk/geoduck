@@ -38,6 +38,9 @@ next-env.d.ts
 # npm
 package-lock.json
 
+# yarn
+yarn.lock
+
 # cypress
 cypress/downloads/*
 cypress/videos/*
