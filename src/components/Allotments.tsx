@@ -1,3 +1,4 @@
+import { useTheme } from 'next-themes';
 import { useState, useRef, useCallback } from "react";
 import * as React from "react";
 import { useWindowSize } from "rooks";
@@ -29,6 +30,7 @@ const minWidth = 50;
 const navbarHeight = 100;
 
 export function Allotments() {
+  const { theme, setTheme } = useTheme();
   const [leftAllotmentVisible, setLeftAllotmentVisible] = useState(true);
   const [bottomAllotmentVisible, setBottomAllotmentVisible] = useState(true);
   const [bottomAllotmentExpanded, setBottomAllotmentExpanded] = useState(false);
@@ -36,7 +38,9 @@ export function Allotments() {
   const { innerWidth, innerHeight, outerHeight, outerWidth } = useWindowSize();
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);  
+    setTheme(darkMode ? 'light': 'dark'); 
+    setDarkMode(!darkMode);
+     
   }
 
   const maxHeight = innerHeight;

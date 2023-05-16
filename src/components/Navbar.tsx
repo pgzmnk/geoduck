@@ -24,7 +24,7 @@ export function ComplexNavbar({leftAllotmentVisible, setLeftAllotmentVisible}) {
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-normal"
+        className="p-1 font-normal dark:text-white"
       >
         <a href="#" className="flex items-center">
           Examples
@@ -34,7 +34,7 @@ export function ComplexNavbar({leftAllotmentVisible, setLeftAllotmentVisible}) {
         as="li"
         variant="small"
         color="blue-gray"
-        className="p-1 font-normal"
+        className="p-1 font-normal dark:text-white"
       >
         <a href="#" className="flex items-center">
           Docs
@@ -46,7 +46,7 @@ export function ComplexNavbar({leftAllotmentVisible, setLeftAllotmentVisible}) {
   return (
     <>
     <Navbar
-      className="sticky inset-0 z-10 max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4"
+      className="sticky inset-0 z-10 max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 dark:bg-gray-800"
       data-testid="navbar-top"
     >
       <div className="flex items-center justify-between text-blue-gray-900">
