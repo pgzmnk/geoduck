@@ -1,18 +1,22 @@
+import { useEffect } from "react";
 import * as rd from "@duckdb/react-duckdb";
 
 export async function loadInitialData() {
   const db = rd.useDuckDB();
 
   var tableNames = [];
-  fetch("/api/v0/table")
-    .then((res) => res.json())
-    .then((res) => {
-      res.data.forEach((table) => {
-        const query = `CREATE OR REPLACE TABLE ${table.name} AS ${table.query};`;
-        runQueryDuckDb(db, query);
-        tableNames.push(table.name);
+  useEffect(() => {
+    fetch("/api/v0/table")
+      .then((res) => res.json())
+      .then((res) => {
+        res.data.forEach((table) => {
+          const query = `CREATE OR REPLACE TABLE ${table.name} AS ${table.query};`;
+          runQueryDuckDb(db, query);
+          tableNames.push(table.name);
+        });
       });
-    });
+  }, []);
+
   return tableNames;
 }
 
