@@ -69,15 +69,13 @@ export const AllotmentBottom = ({
             <div className="geoduck-bottom-tabs-header">
               <TabsHeader>
                 {tabChoices.map(({ label, value }) => (
-                  <>
-                    <Tab
-                      key={value}
-                      value={value}
-                      data-testid={`allotment-bottom-tab-${value}`}
-                    >
-                      {label}
-                    </Tab>
-                  </>
+                  <Tab
+                    key={value}
+                    value={value}
+                    data-testid={`allotment-bottom-tab-${value}`}
+                  >
+                    {label}
+                  </Tab>
                 ))}
               </TabsHeader>
               <div className="geoduck-bottom-allotment-buttons flex w-max gap-4">
@@ -87,9 +85,9 @@ export const AllotmentBottom = ({
                   }}
                 >
                   {expand ? (
-                    <i class="fas fa-solid fa-compress"></i>
+                    <i className="fas fa-solid fa-compress"></i>
                   ) : (
-                    <i class="fas fa-solid fa-expand"></i>
+                    <i className="fas fa-solid fa-expand"></i>
                   )}
                 </IconButton>
                 <IconButton

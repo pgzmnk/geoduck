@@ -42,7 +42,7 @@ export function ModalAddLayer(props: ModalAddLayerProps) {
         className="dark:hover:bg-slate-700 dark:text-white"
       >
         <ListItemPrefix>
-          <i class="fas fa-plus h-5 w-5"></i>
+          <i className="fas fa-plus h-5 w-5"></i>
         </ListItemPrefix>
         Add Layer
       </ListItem>

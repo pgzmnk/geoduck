@@ -107,9 +107,8 @@ function Layers() {
               icon={
                 <ChevronDownIcon
                   strokeWidth={2.5}
-                  className={`mx-auto h-4 w-4 transition-transform ${
-                    open === 1 ? "rotate-180" : ""
-                  }`}
+                  className={`mx-auto h-4 w-4 transition-transform ${open === 1 ? "rotate-180" : ""
+                    }`}
                 />
               }
             >
@@ -212,7 +211,7 @@ export const AllotmentLeft = ({
             <hr className="my-2 border-blue-gray-50" />
             <ListItem className="dark:hover:bg-slate-700 dark:text-white">
               <ListItemPrefix>
-                <i class="fa-solid fa-file h-5 w-5 dark:text-white"></i>
+                <i className="fa-solid fa-file h-5 w-5 dark:text-white"></i>
               </ListItemPrefix>
               Docs
             </ListItem>
@@ -224,7 +223,7 @@ export const AllotmentLeft = ({
             </ListItem>
             <ListItem className="dark:hover:bg-slate-700 dark:text-white">
               <ListItemPrefix>
-                <i class="fas fa-life-ring  h-5 w-5 dark:text-white"></i>
+                <i className="fas fa-life-ring  h-5 w-5 dark:text-white"></i>
               </ListItemPrefix>
               Help
             </ListItem>
@@ -237,9 +236,9 @@ export const AllotmentLeft = ({
             >
               <ListItemPrefix>
                 {darkMode ? (
-                  <i class="fa-solid fa-moon h-5 w-5"></i>
+                  <i className="fa-solid fa-moon h-5 w-5"></i>
                 ) : (
-                  <i class="fa-solid fa-sun h-5 w-5"></i>
+                  <i className="fa-solid fa-sun h-5 w-5"></i>
                 )}
               </ListItemPrefix>
               {darkMode ? "Dark Mode" : "Light Mode"}

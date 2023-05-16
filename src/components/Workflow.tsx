@@ -41,7 +41,7 @@ const initialEdges = [
   { id: "4->5", source: "4", target: "5" },
 ];
 
-interface WorkflowProps {}
+interface WorkflowProps { }
 
 export function Workflow() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -79,7 +79,7 @@ export function Workflow() {
   );
 
   return (
-    <div class="container mx-auto px-4">
+    <div className="container mx-auto px-4">
       <div style={{ height: "400px" }}>
         <p>test</p>
         <ReactFlow
