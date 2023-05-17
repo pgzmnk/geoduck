@@ -40,10 +40,12 @@ export function Allotments() {
   }, [leftAllotmentDragStartWidth]);
 
   const maxHeight = innerHeight;
-  const leftAllotmentEl = typeof document !== 'undefined' &&  document.getElementById("geoduck-allotment-left");
-  const leftAllotmentCollapseEl = typeof document !== 'undefined' &&  document.getElementById(
-    "geoduck-left-allotment-collapse"
-  );
+  const leftAllotmentEl =
+    typeof document !== "undefined" &&
+    document.getElementById("geoduck-allotment-left");
+  const leftAllotmentCollapseEl =
+    typeof document !== "undefined" &&
+    document.getElementById("geoduck-left-allotment-collapse");
   const leftAllotmentRef = useRef<AllotmentHandle>(null!);
   const bottomAllotmentRef = useRef<AllotmentHandle>(null!);
   const onHeightChange = useCallback(

@@ -128,5 +128,5 @@ button.geoduck-left-allotment-collapse.geoduck-allotment-invisible {
   overflow: unset !important;
 }
 .mapboxgl-canvas-container canvas.mapboxgl-canvas {
-  width: 100%;
+  width: 100% !important;
 }
