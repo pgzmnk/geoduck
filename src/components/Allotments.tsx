@@ -24,7 +24,8 @@ export function Allotments() {
   const [bottomAllotmentVisible, setBottomAllotmentVisible] = useState(true);
   const [bottomAllotmentExpanded, setBottomAllotmentExpanded] = useState(false);
   const { innerWidth, innerHeight, outerHeight, outerWidth } = useWindowSize();
-  const [leftAllotmentDragStartWidth, setLeftAllotmentDragStartWidth] = useState(null);
+  const [leftAllotmentDragStartWidth, setLeftAllotmentDragStartWidth] =
+    useState(null);
 
   const toggleDarkMode = () => {
     setTheme(theme == "dark" ? "light" : "dark");
@@ -34,13 +35,15 @@ export function Allotments() {
     setCurrentTheme(theme);
   }, [theme]);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(leftAllotmentDragStartWidth);
-  }, [leftAllotmentDragStartWidth])
+  }, [leftAllotmentDragStartWidth]);
 
   const maxHeight = innerHeight;
-  const leftAllotmentEl = document.getElementById("geoduck-allotment-left");
-  const leftAllotmentCollapseEl = document.getElementById("geoduck-left-allotment-collapse");
+  const leftAllotmentEl = typeof document !== 'undefined' &&  document.getElementById("geoduck-allotment-left");
+  const leftAllotmentCollapseEl = typeof document !== 'undefined' &&  document.getElementById(
+    "geoduck-left-allotment-collapse"
+  );
   const leftAllotmentRef = useRef<AllotmentHandle>(null!);
   const bottomAllotmentRef = useRef<AllotmentHandle>(null!);
   const onHeightChange = useCallback(
@@ -87,28 +90,26 @@ export function Allotments() {
         <Allotment
           ref={leftAllotmentRef}
           onChange={() => {
-            if (
-              leftAllotmentEl &&
-              leftAllotmentCollapseEl
-            ) {
+            if (leftAllotmentEl && leftAllotmentCollapseEl) {
               let leftAllotmentWidth = leftAllotmentEl.offsetWidth;
-              if(leftAllotmentDragStartWidth && leftAllotmentWidth < 100 && leftAllotmentWidth < leftAllotmentDragStartWidth){
+              if (
+                leftAllotmentDragStartWidth &&
+                leftAllotmentWidth < 220 &&
+                leftAllotmentWidth < leftAllotmentDragStartWidth
+              ) {
                 setLeftAllotmentVisible(false);
               }
-              
+
               leftAllotmentCollapseEl.style.left =
-                leftAllotmentWidth +
-                32 +
-                "px";
+                leftAllotmentWidth + 32 + "px";
             }
           }}
-
-          onDragStart={()=>{
-            if(leftAllotmentEl){
+          onDragStart={() => {
+            if (leftAllotmentEl) {
               setLeftAllotmentDragStartWidth(leftAllotmentEl.offsetWidth);
             }
           }}
-          onDragEnd={()=>{
+          onDragEnd={() => {
             setLeftAllotmentDragStartWidth(null);
           }}
         >
