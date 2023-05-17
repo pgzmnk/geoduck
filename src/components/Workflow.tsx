@@ -86,10 +86,32 @@ export const Workflow = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  const [query, setQuery] = useState('')
+
+  const structureSql = () => {
+    console.log('nodes:', nodes)
+    console.log('edges:', edges)
+    let sql = ''
+
+    nodes.forEach((node) => {
+      if (node.type === 'input') {
+        sql += node.data.label + ' '
+      } else if (node.type === 'default') {
+        sql += node.data.label + ' '
+      }
+    })
+    console.log('sql:', sql)
+    setQuery(sql)
+
+  }
+
+
 
   const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
-    []
+    (params) => {
+      setEdges((eds) => addEdge(params, eds))
+      structureSql()
+    }, []
   );
 
   const onDragOver = useCallback((event) => {
@@ -129,31 +151,36 @@ export const Workflow = () => {
     [reactFlowInstance]
   );
 
+
   return (
-    <div className={styles.dndflow}>
-      <ReactFlowProvider>
-        <Sidebar />
-        <div
-          className={styles.reactflowWrapper}
-          ref={reactFlowWrapper}
-          class="w-full	"
-        >
-          <ReactFlow
-            nodes={nodes}
-            edges={edges}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            onConnect={onConnect}
-            onInit={setReactFlowInstance}
-            onDrop={onDrop}
-            onDragOver={onDragOver}
-            fitView
+    <>
+      <h1>{query}</h1>
+      <div className={styles.dndflow}>
+
+        <ReactFlowProvider>
+          <Sidebar />
+          <div
+            className={styles.reactflowWrapper}
+            ref={reactFlowWrapper}
+            class="w-full	"
           >
-            <Controls />
-            <Background color="#ccc" variant="dots" />
-          </ReactFlow>
-        </div>
-      </ReactFlowProvider>
-    </div>
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              onConnect={onConnect}
+              onInit={setReactFlowInstance}
+              onDrop={onDrop}
+              onDragOver={onDragOver}
+              fitView
+            >
+              <Controls />
+              <Background color="#ccc" variant="dots" />
+            </ReactFlow>
+          </div>
+        </ReactFlowProvider>
+      </div>
+    </>
   );
 };
