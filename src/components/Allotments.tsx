@@ -15,7 +15,7 @@ import { ComplexNavbar } from "@/components/Navbar";
 const minHeight = 70;
 
 const minWidth = 50;
-const navbarHeight = 100;
+const navbarHeight = 72;
 
 export function Allotments() {
   const { theme, setTheme } = useTheme();

@@ -92,6 +92,7 @@ body {
 
 .geoduck-bottom-allotment.container {
   max-width: 100%;
+  height: 100%;
 }
 
 .geoduck-bottom-allotment-wrap .data-collection {
@@ -118,4 +119,14 @@ button.geoduck-left-allotment-collapse {
 
 button.geoduck-left-allotment-collapse.geoduck-allotment-invisible {
   left: 0px !important;
+}
+.Content_navbar__fRkEV.overflow-hidden.dark nav.border{border:none;
+}
+
+.Content_navbar__fRkEV.overflow-hidden.dark{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  overflow: unset !important;
+}
+.mapboxgl-canvas-container canvas.mapboxgl-canvas {
+  width: 100%;
 }
