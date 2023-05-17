@@ -86,33 +86,28 @@ export const Workflow = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState("");
 
   const structureSql = () => {
-    console.log('nodes:', nodes)
-    console.log('edges:', edges)
-    let sql = ''
+    console.log("nodes:", nodes);
+    console.log("edges:", edges);
+    let sql = "";
 
     nodes.forEach((node) => {
-      if (node.type === 'input') {
-        sql += node.data.label + ' '
-      } else if (node.type === 'default') {
-        sql += node.data.label + ' '
+      if (node.type === "input") {
+        sql += node.data.label + " ";
+      } else if (node.type === "default") {
+        sql += node.data.label + " ";
       }
-    })
-    console.log('sql:', sql)
-    setQuery(sql)
+    });
+    console.log("sql:", sql);
+    setQuery(sql);
+  };
 
-  }
-
-
-
-  const onConnect = useCallback(
-    (params) => {
-      setEdges((eds) => addEdge(params, eds))
-      structureSql()
-    }, []
-  );
+  const onConnect = useCallback((params) => {
+    setEdges((eds) => addEdge(params, eds));
+    structureSql();
+  }, []);
 
   const onDragOver = useCallback((event) => {
     event.preventDefault();
@@ -151,12 +146,10 @@ export const Workflow = () => {
     [reactFlowInstance]
   );
 
-
   return (
     <>
       <h1>{query}</h1>
       <div className={styles.dndflow}>
-
         <ReactFlowProvider>
           <Sidebar />
           <div
