@@ -11,6 +11,10 @@ import { AllotmentLeft } from "@/components/AllotmentLeft";
 import Map from "@/components/Map";
 import { InitFunctions } from "@/utils/initFunctions";
 import { ComplexNavbar } from "@/components/Navbar";
+import {
+  ArrowRightOnRectangleIcon,
+  ArrowLeftOnRectangleIcon
+} from "@heroicons/react/24/solid";
 
 const minHeight = 70;
 
@@ -76,9 +80,9 @@ export function Allotments() {
           }`}
         >
           {leftAllotmentVisible ? (
-            <i className="fa-solid fa-table-columns h-4 w-4"></i>
+            <ArrowLeftOnRectangleIcon className="mx-auto h-4 w-4"/>
           ) : (
-            <i className="fa-solid fa-bars h-4 w-4"></i>
+            <ArrowRightOnRectangleIcon className="mx-auto h-4 w-4"/>
           )}
         </button>
       </div>
@@ -96,7 +100,7 @@ export function Allotments() {
               let leftAllotmentWidth = leftAllotmentEl.offsetWidth;
               if (
                 leftAllotmentDragStartWidth &&
-                leftAllotmentWidth < 220 &&
+                leftAllotmentWidth < 330 &&
                 leftAllotmentWidth < leftAllotmentDragStartWidth
               ) {
                 setLeftAllotmentVisible(false);
@@ -116,7 +120,7 @@ export function Allotments() {
           }}
         >
           <Allotment.Pane
-            minSize={minWidth}
+            minSize={300}
             maxSize={300}
             visible={leftAllotmentVisible}
           >

@@ -110,9 +110,9 @@ ul.geoduck-sidebar-tab-nav {
 
 button.geoduck-left-allotment-collapse {
   position: absolute;
-  width: 40px;
-  height: 40px;
-  top: 50%;
+  width: 35px;
+  height: 55px;
+  top: 115px;
   transform: translateY(-50%);
   left: 300px;
 }
