@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import * as rd from "@duckdb/react-duckdb";
 
 export async function LoadInitialData() {
@@ -21,9 +20,13 @@ export async function runQueryDuckDb(db: any, query: string) {
   try {
     const c = await db!.value!.connect();
     const response = await c.query(query);
+    console.log("response.toString()", response.toString())
     return response.toString();
   } catch (error) {
     // Show error in console to helps the user debug. In the future, the error should be surfaced to the UI.
     console.log("error: ", error);
+    console.log("- running duckdbquery...")
+    setTimeout(runQueryDuckDb, 50000, db, query);
+    // runQueryDuckDb(db, query);
   }
 }
