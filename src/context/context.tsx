@@ -9,8 +9,8 @@ export const MapLayersContext = createContext({
     { name: "cities", type: "point", tableName: "cities" },
     { name: "ent", type: "polygon", tableName: "ent" },
   ],
-  setLayers: ([]) => { },
-})
+  setLayers: ([]) => {},
+});
 
 export default function Context({ children }) {
   const map = useRef(null);

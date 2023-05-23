@@ -46,10 +46,7 @@ function LayerCard(props) {
 
 function Layers() {
   const [collapsed, setCollapsed] = useState(false);
-  const { layers, setLayers } = useContext(MapLayersContext)
-
-
-
+  const { layers, setLayers } = useContext(MapLayersContext);
 
   // add layer function
   async function AddLayer() {

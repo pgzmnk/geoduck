@@ -11,7 +11,7 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API;
 export default function Map() {
   const mapContainer = useRef(null);
   const { map } = useContext(MapContext);
-  const { layers, setLayers } = useContext(MapLayersContext)
+  const { layers, setLayers } = useContext(MapLayersContext);
   const [lng, setLng] = useState(-102.41);
   const [lat, setLat] = useState(18.77);
   const [zoom, setZoom] = useState(4);
