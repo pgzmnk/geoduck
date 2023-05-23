@@ -5,7 +5,7 @@ import * as wkt from "wkt";
 import * as rd from "@duckdb/react-duckdb";
 import { loadInitialData } from "@/utils/duckdbFunctions"; // remove
 
-export async function createOrReplaceDataset() {}
+export async function createOrReplaceDataset() { }
 
 export const renderMapData = (map, db, tableNames: string) => {
   map?.current?.on("load", () => {
@@ -143,4 +143,11 @@ export async function RenderLayer(layer: RenderLayerProps) {
   const { map } = useContext(MapContext);
 
   renderMapData(map, db, layer.tableName);
+}
+
+export function renderMapLayers(layers) {
+  layers.map((layer) => {
+    console.log("layer: ", layer);
+    RenderLayer(layer);
+  });
 }

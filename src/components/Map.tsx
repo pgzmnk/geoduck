@@ -4,25 +4,21 @@ import mapboxgl from "mapbox-gl";
 import styles from "./Map.module.css";
 import * as rd from "@duckdb/react-duckdb";
 import { MapContext, MapLayersContext } from "@/context/context";
-import { RenderLayer } from "@/utils/mapFunctions";
+import { renderMapLayers } from "@/utils/mapFunctions";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API;
 
 export default function Map() {
   const mapContainer = useRef(null);
   const { map } = useContext(MapContext);
-  const { layers, setLayers } = useContext(MapLayersContext);
+  const { layers, setLayers } = useContext(MapLayersContext)
   const [lng, setLng] = useState(-102.41);
   const [lat, setLat] = useState(18.77);
   const [zoom, setZoom] = useState(4);
   const db = rd.useDuckDB();
 
-  // useEffect(() => {
-  //   // render layers on map
-  //   layers.map((layer) => {
-  //     RenderLayer(layer);
-  //   });
-  // }, [layers]);
+
+  renderMapLayers(layers)
 
   useEffect(() => {
     if (map.current) return;
