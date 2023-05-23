@@ -21,10 +21,10 @@ export async function LoadInitialData() {
 export async function runQueryDuckDb(db: any, query: string) {
   async function wait() {
     console.log("waiting for db connection...");
-    const c = await db!.value!.connect();
     if (db!.value!) {
       setTimeout(wait, 2000);
     } else {
+      const c = await db!.value!.connect();
       const response = await c.query(query);
       console.log("obtained duckdb response: ", response.toString());
       return response.toString();
