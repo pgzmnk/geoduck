@@ -18,9 +18,15 @@ export async function LoadInitialData() {
 
 export async function runQueryDuckDb(db: any, query: string) {
   try {
+    console.log("query: ", query)
     const c = await db!.value!.connect();
     const response = await c.query(query);
-    console.log("query: ", query, "\nresponse.toString(): ", response.toString());
+    console.log(
+      "query: ",
+      query,
+      "\nresponse.toString(): ",
+      response.toString()
+    );
     return response.toString();
   } catch (error) {
     // Show error in console to helps the user debug. In the future, the error should be surfaced to the UI.
