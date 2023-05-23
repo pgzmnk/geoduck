@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { runQueryDuckDb } from "@/utils/duckdbFunctions";
-import { MapContext } from "@/context/context";
 import * as wkt from "wkt";
 import * as rd from "@duckdb/react-duckdb";
 import { loadInitialData } from "@/utils/duckdbFunctions"; // remove
+import { MapContext, MapLayersContext } from "@/context/context";
 
 export async function createOrReplaceDataset() { }
 
@@ -145,7 +145,9 @@ export async function RenderLayer(layer: RenderLayerProps) {
   renderMapData(map, db, layer.tableName);
 }
 
-export function renderMapLayers(layers) {
+export function RenderMapLayers() {
+  const { layers, setLayers } = useContext(MapLayersContext);
+
   layers.map((layer) => {
     console.log("layer: ", layer);
     RenderLayer(layer);
