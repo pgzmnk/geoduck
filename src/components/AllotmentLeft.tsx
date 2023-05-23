@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { IconButton } from "@material-tailwind/react";
 import { useContext } from "react";
-import { MapContext } from "@/context/context";
+import { MapLayersContext } from "@/context/context";
 import * as rd from "@duckdb/react-duckdb";
 import { renderMapData } from "@/utils/mapFunctions";
 
@@ -18,7 +18,7 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { RenderLayer } from "@/utils/mapFunctions";
+
 import { ModalAddLayer } from "@/components/ModalAddLayer";
 
 function LayerCard(props) {
@@ -45,19 +45,8 @@ function LayerCard(props) {
 }
 
 function Layers() {
-  // state for the layers array
-  const [layers, setLayers] = useState([
-    { name: "cities", type: "point", tableName: "cities" },
-    { name: "ent", type: "polygon", tableName: "ent" },
-  ]);
   const [collapsed, setCollapsed] = useState(false);
-  const db = rd.useDuckDB();
-  const { map } = useContext(MapContext);
-
-  // render layers on map
-  layers.map((layer) => {
-    RenderLayer(layer);
-  });
+  const { layers, setLayers } = useContext(MapLayersContext);
 
   // add layer function
   async function AddLayer() {
