@@ -12,8 +12,8 @@ import Map from "@/components/Map";
 import { InitFunctions } from "@/utils/initFunctions";
 import { ComplexNavbar } from "@/components/Navbar";
 import {
+  ArrowLeftOnRectangleIcon,
   ArrowRightOnRectangleIcon,
-  ArrowLeftOnRectangleIcon
 } from "@heroicons/react/24/solid";
 
 const minHeight = 70;
@@ -80,9 +80,9 @@ export function Allotments() {
           }`}
         >
           {leftAllotmentVisible ? (
-            <ArrowLeftOnRectangleIcon className="mx-auto h-4 w-4"/>
+            <ArrowLeftOnRectangleIcon className="mx-auto h-4 w-4" />
           ) : (
-            <ArrowRightOnRectangleIcon className="mx-auto h-4 w-4"/>
+            <ArrowRightOnRectangleIcon className="mx-auto h-4 w-4" />
           )}
         </button>
       </div>

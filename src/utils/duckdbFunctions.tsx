@@ -20,19 +20,18 @@ export async function LoadInitialData() {
 
 export async function runQueryDuckDb(db: any, query: string) {
   async function wait() {
-    console.log("waiting for db connection...")
+    console.log("waiting for db connection...");
     const c = await db!.value!.connect();
     if (db!.value!) {
       setTimeout(wait, 2000);
     } else {
-
       const response = await c.query(query);
-      console.log("obtained duckdb response: ", response.toString())
+      console.log("obtained duckdb response: ", response.toString());
       return response.toString();
     }
   }
   try {
-    wait()
+    wait();
   } catch (error) {
     // Show error in console to helps the user debug. In the future, the error should be surfaced to the UI.
     console.log("error: ", error);
