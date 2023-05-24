@@ -20,6 +20,10 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
+        with:
+          build: npm run build
+          start: npm start
+          browser: chrome
         env:
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
           ELECTRON_EXTRA_LAUNCH_ARGS: '--disable-gpu'
