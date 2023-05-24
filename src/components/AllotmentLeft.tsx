@@ -1,9 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { useContext } from "react";
-import { MapLayersContext } from "@/context/context";
 import { MapContext } from "@/context/context";
 import * as rd from "@duckdb/react-duckdb";
-
 
 import {
   ChevronDownIcon,
@@ -110,8 +108,9 @@ function Layers() {
               icon={
                 <ChevronDownIcon
                   strokeWidth={2.5}
-                  className={`mx-auto h-4 w-4 transition-transform ${open === 1 ? "rotate-180" : ""
-                    }`}
+                  className={`mx-auto h-4 w-4 transition-transform ${
+                    open === 1 ? "rotate-180" : ""
+                  }`}
                 />
               }
             >

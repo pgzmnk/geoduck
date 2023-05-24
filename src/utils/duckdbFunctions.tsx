@@ -18,7 +18,7 @@ export async function LoadInitialData() {
 
 export async function runQueryDuckDb(db: any, query: string) {
   try {
-    console.log("query: ", query)
+    console.log("query: ", query);
     const c = await db!.value!.connect();
     const response = await c.query(query);
     console.log(

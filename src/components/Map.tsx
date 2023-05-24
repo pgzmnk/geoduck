@@ -2,8 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 
 import mapboxgl from "mapbox-gl";
 import styles from "./Map.module.css";
-import * as rd from "@duckdb/react-duckdb";
-import { MapContext, MapLayersContext } from "@/context/context";
+import { MapContext } from "@/context/context";
 import { RenderMapLayers } from "@/utils/mapFunctions";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API;

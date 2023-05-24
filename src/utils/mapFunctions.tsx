@@ -4,7 +4,7 @@ import * as wkt from "wkt";
 import * as rd from "@duckdb/react-duckdb";
 import { MapContext, MapLayersContext } from "@/context/context";
 
-export async function createOrReplaceDataset() { }
+export async function createOrReplaceDataset() {}
 
 export const renderMapData = (map, db, tableNames: string) => {
   map?.current?.on("load", () => {
