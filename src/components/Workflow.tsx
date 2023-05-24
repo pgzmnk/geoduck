@@ -1,13 +1,12 @@
 import React, { useCallback } from "react";
 import ReactFlow, {
   Background,
-  useNodesState,
-  useEdgesState,
   addEdge,
+  getConnectedEdges,
   getIncomers,
   getOutgoers,
-  getConnectedEdges,
-  Controls,
+  useEdgesState,
+  useNodesState,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
@@ -80,7 +79,7 @@ export function Workflow() {
   );
 
   return (
-    <div class="container mx-auto px-4">
+    <div className="container mx-auto px-4">
       <div style={{ height: "400px" }}>
         <p>test</p>
         <ReactFlow

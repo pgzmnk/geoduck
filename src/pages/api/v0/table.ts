@@ -1,8 +1,6 @@
 "use client";
 
 import type { NextApiRequest, NextApiResponse } from "next";
-import * as duckdb from "@duckdb/duckdb-wasm";
-import * as rd from "@duckdb/react-duckdb";
 
 type ResponseData = {
   message: string;

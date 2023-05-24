@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import mapboxgl from "mapbox-gl";
 import styles from "./Map.module.css";
@@ -76,9 +76,8 @@ export default function Map() {
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
       </div>
       <div
-        class="h-[100vh] w-full"
         ref={mapContainer}
-        className={styles.map_container}
+        className={`${styles.map_container} h-[100vh] w-full`}
       />
     </div>
   );
