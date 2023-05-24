@@ -2,6 +2,13 @@
 const withMT = require("@material-tailwind/react/utils/withMT");
 const colors = require("tailwindcss/colors");
 
+// remove tailwind colors to silence warnings
+delete colors['lightBlue'];
+delete colors['warmGray'];
+delete colors['trueGray'];
+delete colors['coolGray'];
+delete colors['blueGray'];
+
 module.exports = withMT({
   darkMode: "class",
   content: [
