@@ -1,13 +1,13 @@
 import { Fragment, useRef, useState } from "react";
 import {
-  IconButton,
-  Input,
-  Checkbox,
-  Typography,
   Button,
   Card,
-  Select,
+  Input,
+  ListItem,
+  ListItemPrefix,
   Option,
+  Select,
+  Typography,
 } from "@material-tailwind/react";
 import { Dialog, Transition } from "@headlessui/react";
 
@@ -37,11 +37,17 @@ export function ModalAddLayer(props: ModalAddLayerProps) {
 
   return (
     <>
-      <IconButton onClick={openModal}>
-        <i className="fas fa-plus" />
-      </IconButton>
+      <ListItem
+        onClick={openModal}
+        className="dark:hover:bg-slate-700 dark:text-white"
+      >
+        <ListItemPrefix>
+          <i className="fas fa-plus h-5 w-5"></i>
+        </ListItemPrefix>
+        Add Layer
+      </ListItem>
       <Transition appear show={isOpen} as={Fragment}>
-        <div class="fixed ">
+        <div className="fixed ">
           <Dialog as="div" className="relative z-20" onClose={closeModal}>
             <Transition.Child
               as={Fragment}
