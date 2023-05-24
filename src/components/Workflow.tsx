@@ -1,100 +1,179 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import ReactFlow, {
   Background,
+  Controls,
+  ReactFlowProvider,
   addEdge,
-  getConnectedEdges,
-  getIncomers,
-  getOutgoers,
   useEdgesState,
   useNodesState,
 } from "reactflow";
-
 import "reactflow/dist/style.css";
+
+import styles from "./Workflow.module.css";
+
+const Sidebar = () => {
+  const onDragStart = (event, nodeType, nodeMessage) => {
+    event.dataTransfer.setData("application/reactflow", nodeMessage);
+    event.dataTransfer.effectAllowed = "move";
+  };
+
+  return (
+    <aside>
+      <div className={styles.description}>
+        You can drag these nodes to the pane on the right.
+      </div>
+      <div
+        className={styles.dndnode + " " + styles.input}
+        onDragStart={(event) => onDragStart(event, "input", "input")}
+        draggable
+      >
+        Input Node
+      </div>
+      <div
+        className={styles.dndnode}
+        onDragStart={(event) => onDragStart(event, "default", "* FROM cities")}
+        draggable
+      >
+        * FROM cities
+      </div>
+      <div
+        className={styles.dndnode + " " + styles.output}
+        onDragStart={(event) => onDragStart(event, "output", "output")}
+        draggable
+      >
+        Output Node
+      </div>
+    </aside>
+  );
+};
 
 const initialNodes = [
   {
     id: "1",
     type: "input",
-    data: { label: "Start here..." },
-    position: { x: -150, y: 0 },
+    sourcePosition: "right",
+    data: { label: "CREATE TABLE newtable AS" },
+    position: { x: 250, y: 5 },
   },
   {
     id: "2",
-    type: "input",
-    data: { label: "...or here!" },
-    position: { x: 150, y: 0 },
+    type: "default",
+    sourcePosition: "right",
+    targetPosition: "left",
+    data: { label: "SELECT" },
+    position: { x: 450, y: 5 },
   },
-  { id: "3", data: { label: "Delete me." }, position: { x: 0, y: 100 } },
-  { id: "4", data: { label: "Then me!" }, position: { x: 0, y: 200 } },
+
   {
-    id: "5",
-    type: "output",
-    data: { label: "End here!" },
-    position: { x: 0, y: 300 },
+    id: "3",
+    type: "default",
+    sourcePosition: "right",
+    targetPosition: "left",
+    data: { label: "* FROM cities" },
+    position: { x: 650, y: 5 },
   },
 ];
-
 const initialEdges = [
-  { id: "1->3", source: "1", target: "3" },
-  { id: "2->3", source: "2", target: "3" },
-  { id: "3->4", source: "3", target: "4" },
-  { id: "4->5", source: "4", target: "5" },
+  { id: "e1-2", source: "1", target: "2" },
+  { id: "e2-3", source: "2", target: "3" },
 ];
 
-interface WorkflowProps {}
+let id = 0;
+const getId = () => `dndnode_${id++}`;
 
-export function Workflow() {
+export const Workflow = () => {
+  const reactFlowWrapper = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  const [query, setQuery] = useState("");
 
-  const onConnect = useCallback(
-    (params) => setEdges(addEdge(params, edges)),
-    [edges] // eslint-disable-line
-  );
-  const onNodesDelete = useCallback(
-    (deleted) => {
-      setEdges(
-        deleted.reduce((acc, node) => {
-          const incomers = getIncomers(node, nodes, edges);
-          const outgoers = getOutgoers(node, nodes, edges);
-          const connectedEdges = getConnectedEdges([node], edges);
+  const structureSql = () => {
+    console.log("nodes:", nodes);
+    console.log("edges:", edges);
+    let sql = "";
 
-          const remainingEdges = acc.filter(
-            (edge) => !connectedEdges.includes(edge)
-          );
+    nodes.forEach((node) => {
+      if (node.type === "input") {
+        sql += node.data.label + " ";
+      } else if (node.type === "default") {
+        sql += node.data.label + " ";
+      }
+    });
+    console.log("sql:", sql);
+    setQuery(sql);
+  };
 
-          const createdEdges = incomers.flatMap(({ id: source }) =>
-            outgoers.map(({ id: target }) => ({
-              id: `${source}->${target}`,
-              source,
-              target,
-            }))
-          );
+  const onConnect = useCallback((params) => {
+    setEdges((eds) => addEdge(params, eds));
+    structureSql();
+  }, []);
 
-          return [...remainingEdges, ...createdEdges];
-        }, edges)
-      );
+  const onDragOver = useCallback((event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+  }, []);
+
+  const onDrop = useCallback(
+    (event) => {
+      event.preventDefault();
+
+      const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
+      const type = event.dataTransfer.getData("application/reactflow");
+
+      // check if the dropped element is valid
+      if (typeof type === "undefined" || !type) {
+        return;
+      }
+
+      const position = reactFlowInstance.project({
+        x: event.clientX - reactFlowBounds.left,
+        y: event.clientY - reactFlowBounds.top,
+      });
+      const newNode = {
+        id: getId(),
+        type,
+        position,
+        sourcePosition: "right",
+        targetPosition: "left",
+        data: { label: `${type} node` },
+      };
+
+      setNodes((nds) => nds.concat(newNode));
+      console.log("nodes:", nodes);
     },
-    [nodes, edges] // eslint-disable-line
+
+    [reactFlowInstance]
   );
 
   return (
-    <div className="container mx-auto px-4">
-      <div style={{ height: "400px" }}>
-        <p>test</p>
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onNodesDelete={onNodesDelete}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          fitView
-          attributionPosition="top-right"
-        >
-          <Background variant="dots" gap={12} size={1} />
-        </ReactFlow>
+    <>
+      <h1>{query}</h1>
+      <div className={styles.dndflow}>
+        <ReactFlowProvider>
+          <Sidebar />
+          <div
+            className={styles.reactflowWrapper}
+            ref={reactFlowWrapper}
+            class="w-full	"
+          >
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              onConnect={onConnect}
+              onInit={setReactFlowInstance}
+              onDrop={onDrop}
+              onDragOver={onDragOver}
+              fitView
+            >
+              <Controls />
+              <Background color="#ccc" variant="dots" />
+            </ReactFlow>
+          </div>
+        </ReactFlowProvider>
       </div>
-    </div>
+    </>
   );
-}
+};
